@@ -1,0 +1,750 @@
+{
+  "grid": "10mm including cube-center boundary values",
+  "object": "red_cube",
+  "demo_pose": "p1",
+  "pre_approach_height_m": 0.02,
+  "descent_steps": 8,
+  "lift_height_m": 0.06,
+  "table_footprint_m": {
+    "x": [
+      0.095,
+      0.253
+    ],
+    "y": [
+      -0.118,
+      0.118
+    ]
+  },
+  "cube_center_region_m": {
+    "x": [
+      0.11,
+      0.238
+    ],
+    "y": [
+      -0.103,
+      0.103
+    ]
+  },
+  "cube_half_extent_m": 0.015,
+  "attempted": 308,
+  "solved": 259,
+  "rejected": 49,
+  "pass_rate": 0.8409090909090909,
+  "reject_reason_counts": {
+    "no_lift_solution": 13,
+    "ik_no_vertical_approach_solution": 32,
+    "ik_no_grasp_solution_beyond_reach": 4
+  },
+  "accepted_radius_range_m": [
+    0.1207,
+    0.23696
+  ],
+  "accepted_xy_bbox_m": {
+    "x": [
+      0.11,
+      0.23
+    ],
+    "y": [
+      -0.103,
+      0.103
+    ]
+  },
+  "per_x": {
+    "0.110": {
+      "ok": 12,
+      "n": 22,
+      "rejects": {
+        "no_lift_solution": 10
+      }
+    },
+    "0.120": {
+      "ok": 19,
+      "n": 22,
+      "rejects": {
+        "no_lift_solution": 3
+      }
+    },
+    "0.130": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.140": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.150": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.160": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.170": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.180": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.190": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.200": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.210": {
+      "ok": 22,
+      "n": 22,
+      "rejects": {}
+    },
+    "0.220": {
+      "ok": 18,
+      "n": 22,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 4
+      }
+    },
+    "0.230": {
+      "ok": 12,
+      "n": 22,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 10
+      }
+    },
+    "0.238": {
+      "ok": 0,
+      "n": 22,
+      "rejects": {
+        "ik_no_grasp_solution_beyond_reach": 4,
+        "ik_no_vertical_approach_solution": 18
+      }
+    }
+  },
+  "per_y": {
+    "-0.103": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2,
+        "ik_no_grasp_solution_beyond_reach": 1
+      }
+    },
+    "-0.093": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2,
+        "ik_no_grasp_solution_beyond_reach": 1
+      }
+    },
+    "-0.083": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "-0.073": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "-0.063": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "-0.053": {
+      "ok": 13,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "-0.043": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "-0.033": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "-0.023": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "-0.013": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "-0.003": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 2,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.007": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 2,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.017": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 2,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.027": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.037": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.047": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "no_lift_solution": 1,
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.057": {
+      "ok": 13,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 1
+      }
+    },
+    "0.067": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "0.077": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "0.087": {
+      "ok": 12,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2
+      }
+    },
+    "0.097": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2,
+        "ik_no_grasp_solution_beyond_reach": 1
+      }
+    },
+    "0.103": {
+      "ok": 11,
+      "n": 14,
+      "rejects": {
+        "ik_no_vertical_approach_solution": 2,
+        "ik_no_grasp_solution_beyond_reach": 1
+      }
+    }
+  },
+  "rejected_points": [
+    {
+      "object_position": [
+        0.11,
+        -0.043,
+        0.115
+      ],
+      "radius_m": 0.11811,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        -0.033,
+        0.115
+      ],
+      "radius_m": 0.11484,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        -0.023,
+        0.115
+      ],
+      "radius_m": 0.11238,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        -0.013,
+        0.115
+      ],
+      "radius_m": 0.11077,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        -0.003,
+        0.115
+      ],
+      "radius_m": 0.11004,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        0.007,
+        0.115
+      ],
+      "radius_m": 0.11022,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        0.017,
+        0.115
+      ],
+      "radius_m": 0.11131,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        0.027,
+        0.115
+      ],
+      "radius_m": 0.11327,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        0.037,
+        0.115
+      ],
+      "radius_m": 0.11606,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.11,
+        0.047,
+        0.115
+      ],
+      "radius_m": 0.11962,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.12,
+        -0.003,
+        0.115
+      ],
+      "radius_m": 0.12004,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.12,
+        0.007,
+        0.115
+      ],
+      "radius_m": 0.1202,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.12,
+        0.017,
+        0.115
+      ],
+      "radius_m": 0.1212,
+      "reject_reason": "no_lift_solution"
+    },
+    {
+      "object_position": [
+        0.22,
+        -0.103,
+        0.115
+      ],
+      "radius_m": 0.24292,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.22,
+        -0.093,
+        0.115
+      ],
+      "radius_m": 0.23885,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.22,
+        0.097,
+        0.115
+      ],
+      "radius_m": 0.24044,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.22,
+        0.103,
+        0.115
+      ],
+      "radius_m": 0.24292,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        -0.103,
+        0.115
+      ],
+      "radius_m": 0.25201,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        -0.093,
+        0.115
+      ],
+      "radius_m": 0.24809,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        -0.083,
+        0.115
+      ],
+      "radius_m": 0.24452,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        -0.073,
+        0.115
+      ],
+      "radius_m": 0.24131,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        -0.063,
+        0.115
+      ],
+      "radius_m": 0.23847,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        0.067,
+        0.115
+      ],
+      "radius_m": 0.23956,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        0.077,
+        0.115
+      ],
+      "radius_m": 0.24255,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        0.087,
+        0.115
+      ],
+      "radius_m": 0.2459,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        0.097,
+        0.115
+      ],
+      "radius_m": 0.24962,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.23,
+        0.103,
+        0.115
+      ],
+      "radius_m": 0.25201,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.103,
+        0.115
+      ],
+      "radius_m": 0.25933,
+      "reject_reason": "ik_no_grasp_solution_beyond_reach"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.093,
+        0.115
+      ],
+      "radius_m": 0.25552,
+      "reject_reason": "ik_no_grasp_solution_beyond_reach"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.083,
+        0.115
+      ],
+      "radius_m": 0.25206,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.073,
+        0.115
+      ],
+      "radius_m": 0.24894,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.063,
+        0.115
+      ],
+      "radius_m": 0.2462,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.053,
+        0.115
+      ],
+      "radius_m": 0.24383,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.043,
+        0.115
+      ],
+      "radius_m": 0.24185,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.033,
+        0.115
+      ],
+      "radius_m": 0.24028,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.023,
+        0.115
+      ],
+      "radius_m": 0.23911,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.013,
+        0.115
+      ],
+      "radius_m": 0.23835,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        -0.003,
+        0.115
+      ],
+      "radius_m": 0.23802,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.007,
+        0.115
+      ],
+      "radius_m": 0.2381,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.017,
+        0.115
+      ],
+      "radius_m": 0.23861,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.027,
+        0.115
+      ],
+      "radius_m": 0.23953,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.037,
+        0.115
+      ],
+      "radius_m": 0.24086,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.047,
+        0.115
+      ],
+      "radius_m": 0.2426,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.057,
+        0.115
+      ],
+      "radius_m": 0.24473,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.067,
+        0.115
+      ],
+      "radius_m": 0.24725,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.077,
+        0.115
+      ],
+      "radius_m": 0.25015,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.087,
+        0.115
+      ],
+      "radius_m": 0.2534,
+      "reject_reason": "ik_no_vertical_approach_solution"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.097,
+        0.115
+      ],
+      "radius_m": 0.25701,
+      "reject_reason": "ik_no_grasp_solution_beyond_reach"
+    },
+    {
+      "object_position": [
+        0.238,
+        0.103,
+        0.115
+      ],
+      "radius_m": 0.25933,
+      "reject_reason": "ik_no_grasp_solution_beyond_reach"
+    }
+  ],
+  "source_pose_cache": "outputs/eval/recentered_table_grid10mm_edges_h020_d8_poses.json",
+  "source_grid": "outputs/eval/recentered_table_grid10mm_edges_positions.json"
+}

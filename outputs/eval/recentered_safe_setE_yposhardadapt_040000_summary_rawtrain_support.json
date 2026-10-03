@@ -1,0 +1,41 @@
+{
+  "summaries": [
+    {
+      "file": "outputs/eval/recentered_safe_setE_yposhardadapt_040000_snap_thr004_x60.json",
+      "overall": {
+        "n": 60,
+        "raw_success": 52,
+        "clean_success": 51,
+        "velocity_violations": 1,
+        "clean_rate": 0.85,
+        "clean_wilson95": [
+          0.7388517410884038,
+          0.9190265075770431
+        ]
+      },
+      "in_train_xy_box": {
+        "n": 60,
+        "raw_success": 52,
+        "clean_success": 51,
+        "velocity_violations": 1,
+        "clean_rate": 0.85,
+        "clean_wilson95": [
+          0.7388517410884038,
+          0.9190265075770431
+        ]
+      },
+      "outside_train_xy_box": {
+        "n": 0,
+        "raw_success": 0,
+        "clean_success": 0,
+        "velocity_violations": 0,
+        "clean_rate": null,
+        "clean_wilson95": null
+      },
+      "failure_classes": {
+        "approach_miss": 8,
+        "success_with_state_jump": 1
+      }
+    }
+  ]
+}

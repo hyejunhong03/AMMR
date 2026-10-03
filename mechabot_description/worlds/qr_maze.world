@@ -1,0 +1,186 @@
+<sdf version='1.9'>
+  <world name='qr_maze'>
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='Maze_Walls'>
+      <static>true</static>
+      <model name='maze_walls'>
+        <link name='link'>
+          <inertial>
+            <mass>1000</mass>
+            <inertia>
+              <ixx>840083.32999999996</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>475500</iyy>
+              <iyz>0</iyz>
+              <izz>1302083.3300000001</izz>
+            </inertia>
+          </inertial>
+          <collision name='collision'>
+            <geometry>
+              <mesh>
+                <uri>model://maze_walls/meshes/maze_walls.dae</uri>
+                <scale>1 1 1</scale>
+              </mesh>
+            </geometry>
+            <surface>
+              <friction>
+                <ode>
+                  <mu>0.5</mu>
+                  <mu2>0.5</mu2>
+                  <fdir1>0 0 0</fdir1>
+                  <slip1>0</slip1>
+                  <slip2>0</slip2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>model://maze_walls/meshes/maze_walls.dae</uri>
+              </mesh>
+            </geometry>
+            <meta>
+              <layer>2</layer>
+            </meta>
+          </visual>
+        </link>
+        <static>true</static>
+      </model>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Marker0'>
+      <static>true</static>
+      <model name='Marker0'>
+        <static>true</static>
+        <link name='link'>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>model://marker0/meshes/Marker0.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+      </model>
+      <pose>-9.9e-05 -3.8437 0.046689 0 -0 1.5701</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Marker1'>
+      <static>true</static>
+      <model name='Marker1'>
+        <static>true</static>
+        <link name='link'>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>model://marker1/meshes/Marker1.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+      </model>
+      <pose>3.90226 -3.45706 0.064965 0 0 -3.13704</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Marker2'>
+      <static>true</static>
+      <model name='Marker2'>
+        <static>true</static>
+        <link name='link'>
+          <visual name='visual'>
+            <geometry>
+              <mesh>
+                <uri>model://marker2/meshes/Marker2.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+      </model>
+      <pose>3.51256 -5.28122 0.062534 0 -0 1.56545</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.1 -0.9</direction>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

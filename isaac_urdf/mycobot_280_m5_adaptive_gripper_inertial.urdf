@@ -1,0 +1,508 @@
+<?xml version="1.1"?>
+<robot  xmlns:xacro="http://www.ros.org/wiki/xacro" name="mycobot_280_m5_adaptive_gripper" >
+	
+<xacro:property name="width" value=".2" />
+
+
+  <link name="g_base">
+    <inertial>
+      <origin xyz="-0.000000 -0.000000 -0.030000" rpy="0 0 0"/>
+      <mass value="0.250000"/>
+      <inertia
+        ixx="7.991072580e-04" ixy="-4.410759686e-07" ixz="1.038966613e-21"
+        iyy="3.086007111e-04" iyz="-2.715511086e-21"
+        izz="5.714591126e-04"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/G_base.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 -0.03" rpy = "0 0 1.5708"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/G_base.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 -0.03" rpy = "0 0 1.5708"/>
+    </collision>
+  </link>
+
+  <link name="joint1">
+    <inertial>
+      <origin xyz="-0.003866 0.000007 0.031731" rpy="0 0 0"/>
+      <mass value="0.140000"/>
+      <inertia
+        ixx="1.143249742e-04" ixy="8.158777624e-09" ixz="-1.032870241e-06"
+        iyy="1.323366719e-04" iyz="-1.767191594e-08"
+        izz="1.487783503e-04"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+	     <!--- 0.0 0 -0.04  1.5708 3.14159-->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint1.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 0 " rpy = " 0 0 -1.5708"/>
+    </visual>
+    <collision>
+      <geometry>
+	     <!--- 0.0 0 -0.04  1.5708 3.14159-->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint1.dae"/>
+        </geometry>
+        <origin xyz = "0.0 0 0 " rpy = " 0 0 -1.5708"/>
+    </collision>
+  </link>
+
+  <link name="joint2">
+    <inertial>
+      <origin xyz="0.000000 -0.005110 -0.019214" rpy="0 0 0"/>
+      <mass value="0.140000"/>
+      <inertia
+        ixx="9.808525020e-05" ixy="-4.438882243e-10" ixz="2.405330945e-09"
+        iyy="8.851550547e-05" iyz="1.397071707e-05"
+        izz="4.977887520e-05"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint2.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 -0.06096 " rpy = " 0 0 -1.5708"/>
+    </visual>
+    <collision>
+     <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint2.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 -0.06096 " rpy = " 0 0 -1.5708"/>
+    </collision>
+  </link>
+
+
+  <link name="joint3">
+    <inertial>
+      <origin xyz="-0.054478 -0.000000 0.058974" rpy="0 0 0"/>
+      <mass value="0.110000"/>
+      <inertia
+        ixx="3.435331537e-05" ixy="-7.511465888e-09" ixz="-1.347521194e-06"
+        iyy="2.293619136e-04" iyz="4.338584097e-10"
+        izz="2.242353782e-04"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint3.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 0.03256 " rpy = " 0 -1.5708 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint3.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 0.03256 " rpy = " 0 -1.5708 0"/>
+    </collision>
+  </link>
+
+
+  <link name="joint4">
+    <inertial>
+      <origin xyz="-0.045988 0.000002 0.003163" rpy="0 0 0"/>
+      <mass value="0.090000"/>
+      <inertia
+        ixx="2.565842187e-05" ixy="4.985058024e-10" ixz="-2.826350618e-06"
+        iyy="1.521772521e-04" iyz="2.096941469e-09"
+        izz="1.456514539e-04"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint4.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 0.03056 " rpy = " 0 -1.5708 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint4.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 0.03056 " rpy = " 0 -1.5708 0"/>
+    </collision>
+  </link>
+
+
+  <link name="joint5">
+    <inertial>
+      <origin xyz="-0.000050 -0.007267 -0.010629" rpy="0 0 0"/>
+      <mass value="0.080000"/>
+      <inertia
+        ixx="3.871071823e-05" ixy="4.543761676e-08" ixz="-5.972680875e-08"
+        iyy="2.939120783e-05" iyz="7.176554772e-06"
+        izz="2.998416133e-05"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint5.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 -0.03356 " rpy = " -1.5708 0 0"/>
+    </visual>
+    <collision>
+       <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint5.dae"/>
+      </geometry>
+      <origin xyz = "0.0 0 -0.03356 " rpy = " -1.5708 0 0"/>
+    </collision>
+  </link>
+
+
+  <link name="joint6">
+    <inertial>
+      <origin xyz="-0.000000 0.004878 -0.007517" rpy="0 0 0"/>
+      <mass value="0.050000"/>
+      <inertia
+        ixx="2.248730250e-05" ixy="9.464856482e-11" ixz="1.972331090e-11"
+        iyy="1.594981907e-05" iyz="-1.812982200e-06"
+        izz="1.615806811e-05"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint6.dae"/>
+      </geometry>
+    <origin xyz = "0 0.00 -0.038 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint6.dae"/>
+      </geometry>
+    <origin xyz = "0 0.00 -0.038 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+
+  <link name="joint6_flange">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.005187" rpy="0 0 0"/>
+      <mass value="0.020000"/>
+      <inertia
+        ixx="2.410789660e-06" ixy="-3.813379597e-12" ixz="-1.256965910e-12"
+        iyy="2.410804087e-06" iyz="-6.418827003e-12"
+        izz="4.203489795e-06"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint7.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <!--- 0.0 0 -0.04 -->
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/joint7.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+
+  <joint name="g_base_to_joint1" type="fixed">
+    <axis xyz="0 0 0"/>
+    <limit effort = "1000.0" lower = "-3.14" upper = "3.14159" velocity = "0"/>
+    <parent link="g_base"/>
+    <child link="joint1"/>
+    <origin xyz= "0 0 0" rpy = "0 0 0"/>  
+  </joint>
+
+
+  <joint name="joint2_to_joint1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-2.9321" upper = "2.9321" velocity = "0"/>
+    <parent link="joint1"/>
+    <child link="joint2"/>
+    <origin xyz= "0 0 0.13156" rpy = "0 0 0"/>  
+  </joint>
+
+
+  <joint name="joint3_to_joint2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-2.4434" upper = "2.4434" velocity = "0"/>
+    <parent link="joint2"/>
+    <child link="joint3"/>
+    <origin xyz= "0 0  0" rpy = "0 1.5708 -1.5708"/>  
+  </joint>
+
+
+  <joint name="joint4_to_joint3" type="revolute">
+    <axis xyz=" 0 0 1"/>
+    <limit effort = "1000.0" lower = "-2.6179" upper = "2.6179" velocity = "0"/>
+    <parent link="joint3"/>
+    <child link="joint4"/>
+    <origin xyz= "  -0.1104 0 0   " rpy = "0 0 0"/>  
+  </joint>
+
+
+
+  <joint name="joint5_to_joint4" type="revolute">
+    <axis xyz=" 0 0 1"/>
+    <limit effort = "1000.0" lower = "-2.6179" upper = "2.6179" velocity = "0"/>
+    <parent link="joint4"/>
+    <child link="joint5"/>
+    <origin xyz= "-0.096 0 0.06462" rpy = "0 0 -1.5708"/>  
+  </joint>
+
+  <joint name="joint6_to_joint5" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-2.7052" upper = "2.7925" velocity = "0"/>
+    <parent link="joint5"/>
+    <child link="joint6"/>
+    <origin xyz= "0 -0.07318 0" rpy = "1.5708 -1.5708 0"/>  
+  </joint>
+
+  <joint name="joint6output_to_joint6" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-3.14159" upper = "3.14159" velocity = "0"/>
+    <parent link="joint6"/>
+    <child link="joint6_flange"/>
+    <origin xyz= "0 0.0456 0" rpy = "-1.5708 0 0"/>  
+  </joint>
+
+  <joint name="joint6output_to_gripper_base" type="fixed">
+    <!-- <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-3.14" upper = "3.14159" velocity = "0"/> -->
+    <parent link="joint6_flange"/>
+    <child link="gripper_base"/>
+    <!-- <origin xyz= "0 0.0 0" rpy = "-1.5708 0 0"/>   -->
+    <origin xyz= "0 0 0.034" rpy = "1.579 0 0"/>  
+  </joint>
+
+  <link name="gripper_base">
+    <inertial>
+      <origin xyz="0.001218 0.005000 -0.018181" rpy="0 0 0"/>
+      <mass value="0.070000"/>
+      <inertia
+        ixx="2.793833674e-05" ixy="-4.018219627e-07" ixz="1.980605000e-06"
+        iyy="3.058928461e-05" iyz="3.927961854e-06"
+        izz="3.862490630e-05"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_base.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_base.dae"/>
+      </geometry>
+    <origin xyz = "0.0 0 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_left1">
+    <inertial>
+      <origin xyz="0.039901 -0.012765 -0.009465" rpy="0 0 0"/>
+      <mass value="0.006000"/>
+      <inertia
+        ixx="4.325945257e-07" ixy="9.232104627e-08" ixz="5.991559773e-08"
+        iyy="1.290480084e-06" iyz="-7.914467318e-09"
+        izz="1.268324784e-06"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left1.dae"/>
+      </geometry>
+    <origin xyz = "0.039 -0.0133 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left1.dae"/>
+      </geometry>
+        <origin xyz = "0.039 -0.0133 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_left2">
+    <inertial>
+      <origin xyz="0.005198 -0.022600 -0.012000" rpy="0 0 0"/>
+      <mass value="0.005000"/>
+      <inertia
+        ixx="2.938548023e-07" ixy="-6.810190301e-14" ixz="-3.130714791e-18"
+        iyy="6.605902601e-07" iyz="2.168320477e-15"
+        izz="8.897431929e-07"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left2.dae"/>
+      </geometry>
+    <origin xyz = "0.005 -0.0195 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left2.dae"/>
+      </geometry>
+        <origin xyz = "0.005 -0.0195 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_left3">
+    <inertial>
+      <origin xyz="0.014464 0.007233 -0.016955" rpy="0 0 0"/>
+      <mass value="0.005000"/>
+      <inertia
+        ixx="9.190044288e-07" ixy="-6.642318308e-10" ixz="7.038234356e-10"
+        iyy="4.591276847e-07" iyz="2.710029505e-07"
+        izz="4.779284472e-07"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left3.dae"/>
+      </geometry>
+    <origin xyz = "0.012 0.0025 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_left3.dae"/>
+      </geometry>
+    <origin xyz = "0.012 0.0025 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_right1">
+    <inertial>
+      <origin xyz="-0.038099 -0.012765 -0.009465" rpy="0 0 0"/>
+      <mass value="0.006000"/>
+      <inertia
+        ixx="4.325945257e-07" ixy="9.232104627e-08" ixz="5.991559773e-08"
+        iyy="1.290480084e-06" iyz="-7.914467318e-09"
+        izz="1.268324784e-06"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right1.dae"/>
+      </geometry>
+    <origin xyz = "-0.039 -0.0133 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right1.dae"/>
+      </geometry>
+        <origin xyz = "-0.039 -0.0133 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_right2">
+    <inertial>
+      <origin xyz="-0.004802 -0.022600 -0.012000" rpy="0 0 0"/>
+      <mass value="0.005000"/>
+      <inertia
+        ixx="2.938548023e-07" ixy="-6.810190301e-14" ixz="-3.130714791e-18"
+        iyy="6.605902601e-07" iyz="2.168320477e-15"
+        izz="8.897431929e-07"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right2.dae"/>
+      </geometry>
+    <origin xyz = "-0.005 -0.0195 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right2.dae"/>
+      </geometry>
+        <origin xyz = "-0.005 -0.0195 -0.012 " rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+  <link name="gripper_right3">
+    <inertial>
+      <origin xyz="-0.009314 0.006157 -0.017599" rpy="0 0 0"/>
+      <mass value="0.005000"/>
+      <inertia
+        ixx="8.940193012e-07" ixy="3.582556015e-09" ixz="-4.027376443e-09"
+        iyy="5.449845431e-07" iyz="2.465756260e-07"
+        izz="3.669303746e-07"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right3.dae"/>
+      </geometry>
+    <origin xyz = "-0.012 0.0025 -0.012 " rpy = " 0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+       <mesh filename="/home/autolab/AMMR/mechabot_description/meshes/mycobot_280/gripper_right3.dae"/>
+      </geometry>
+    <origin xyz = "-0.012 0.0025 -0.012" rpy = " 0 0 0"/>
+    </collision>
+  </link>
+
+
+<joint name="gripper_controller" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.74" upper = "0.15" velocity = "0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_left3"/>
+    <origin xyz= "-0.012 0.005 0" rpy = "0 0 0"/> 
+  </joint>
+
+  <joint name="gripper_base_to_gripper_left2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.8" upper = "0.5" velocity = "0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_left2"/>
+    <origin xyz= "-0.005 0.027 0" rpy = "0 0 0"/> 
+    <mimic joint="gripper_controller" multiplier="1.0" offset="0" />
+  </joint>
+
+  <joint name="gripper_left3_to_gripper_left1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.5" upper = "0.5" velocity = "0"/>
+    <parent link="gripper_left3"/>
+    <child link="gripper_left1"/>
+    <origin xyz= "-0.027 0.016 0" rpy = "0 0 0"/> 
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0" />
+  </joint>
+
+  <joint name="gripper_base_to_gripper_right3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.15" upper = "0.7" velocity = "0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_right3"/>
+    <origin xyz= "0.012 0.005 0" rpy = "0 0 0"/> 
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0" />
+  </joint>
+
+  <joint name="gripper_base_to_gripper_right2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.5" upper = "0.8" velocity = "0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_right2"/>
+    <origin xyz= "0.005 0.027 0" rpy = "0 0 0"/> 
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0" />
+  </joint>
+
+  <joint name="gripper_right3_to_gripper_right1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-0.5" upper = "0.5" velocity = "0"/>
+    <parent link="gripper_right3"/>
+    <child link="gripper_right1"/>
+    <origin xyz= "0.027 0.016 0" rpy = "0 0 0"/> 
+    <mimic joint="gripper_controller" multiplier="1.0" offset="0" />
+  </joint>
+
+</robot>
+

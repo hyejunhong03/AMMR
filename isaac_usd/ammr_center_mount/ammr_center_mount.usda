@@ -1,0 +1,182 @@
+#usda 1.0
+(
+    defaultPrim = "AMMR"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+def Xform "AMMR"
+{
+    custom string ammr:mount_description = "myCobot centered on mechabot top deck"
+    custom double ammr:mechabot_top_z = 0.198156
+    custom double ammr:mount_clearance = 0.002
+    custom double ammr:mycobot_origin_z = 0.230156
+
+    def Xform "mechabot" (
+        prepend references = @../mechabot_scaled_rolling_casters/mechabot_scaled_no_castor_collision/mechabot_scaled_no_castor_collision.usda@
+        variants = {
+            string Physics = "physics"
+        }
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "mycobot" (
+        prepend references = @../mycobot_280_adaptive_gripper/mycobot_280_adaptive_gripper/mycobot_280_adaptive_gripper.usda@
+        variants = {
+            string Physics = "physics"
+        }
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0.230156)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        over "Geometry"
+        {
+            over "g_base" (
+                delete apiSchemas = ["PhysicsArticulationRootAPI", "NewtonArticulationRootAPI"]
+            )
+            {
+                over "joint2"
+                {
+                    over "joint3"
+                    {
+                        over "joint4"
+                        {
+                            over "joint5"
+                            {
+                                over "joint6"
+                                {
+                                    over "joint6_flange"
+                                    {
+                                        over "gripper_base"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        over "gripper_left3"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        over "gripper_left2"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        over "gripper_right3"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        over "gripper_right2"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        over "gripper_base_1"
+                                        {
+                                            token visibility = "invisible"
+                                        }
+
+                                        def Xform "ammr_simple_gripper"
+                                        {
+                                            custom string ammr:note = "Fixed visual replacement for imported adaptive gripper"
+                                            quatf xformOp:orient = (0.7042004, 0.7100013, 0, 0)
+                                            double3 xformOp:translate = (0, 0.012, 0.034)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+                                            def Cube "palm"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.42, 0.45, 0.48)]
+                                                double size = 1
+                                                double3 xformOp:scale = (0.052, 0.018, 0.022)
+                                                double3 xformOp:translate = (0, 0, 0)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+
+                                            def Cube "left_finger"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.55, 0.58, 0.60)]
+                                                double size = 1
+                                                double3 xformOp:scale = (0.010, 0.062, 0.012)
+                                                double3 xformOp:translate = (0.030, 0.044, 0)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+
+                                            def Cube "right_finger"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.55, 0.58, 0.60)]
+                                                double size = 1
+                                                double3 xformOp:scale = (0.010, 0.062, 0.012)
+                                                double3 xformOp:translate = (-0.030, 0.044, 0)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+
+                                            def Cube "left_tip"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.02, 0.025, 0.03)]
+                                                double size = 1
+                                                double3 xformOp:scale = (0.006, 0.032, 0.013)
+                                                double3 xformOp:translate = (0.020, 0.076, 0)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+
+                                            def Cube "right_tip"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.02, 0.025, 0.03)]
+                                                double size = 1
+                                                double3 xformOp:scale = (0.006, 0.032, 0.013)
+                                                double3 xformOp:translate = (-0.020, 0.076, 0)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+
+                                            def Cube "upper_visibility_bar"
+                                            {
+                                                color3f[] primvars:displayColor = [(0.55, 0.58, 0.60)]
+                                                double size = 1
+                                                token visibility = "invisible"
+                                                double3 xformOp:scale = (0.060, 0.012, 0.010)
+                                                double3 xformOp:translate = (0, 0.090, 0.020)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        over "Physics"
+        {
+            over "root_joint" (
+                active = false
+            )
+            {
+            }
+        }
+    }
+
+    def Scope "Physics"
+    {
+        def PhysicsFixedJoint "mechabot_to_mycobot_fixed_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </AMMR/mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </AMMR/mycobot/Geometry/g_base>
+            point3f physics:localPos0 = (0, 0, 0.212464)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+    }
+}

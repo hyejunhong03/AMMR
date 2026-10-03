@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="mechabot">
+  <!--Same as mechabot_scaled_simplified_collision.urdf, but fixed castor collisions are removed to reduce contact jitter in Isaac Sim.-->
+  <!--Same scale and joint geometry as mechabot_scaled.urdf; simplified collision geometry for Isaac Sim.-->
+  <link name="base_footprint" />
+  <link name="base_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.017692" />
+      <mass value="5.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.017692" />
+      <geometry>
+        <mesh filename="meshes/mechabot_base_link.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.035000" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.353276 0.304032 0.070770" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 0.017692" />
+    <parent link="base_footprint" />
+    <child link="base_link" />
+  </joint>
+  <link name="right_wheel_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.175768 -0.048124" />
+      <mass value="0.5" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.175768 -0.048124" />
+      <geometry>
+        <mesh filename="meshes/mechabot_right_wheel.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.000000" />
+      <geometry>
+        <sphere radius="0.051258" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0" />
+      </material>
+    </collision>
+  </link>
+  <joint name="right_wheel_joint" type="continuous">
+    <origin rpy="0.0 0.0 0.0" xyz="0.000000 -0.175768 0.030431" />
+    <parent link="base_link" />
+    <child link="right_wheel_link" />
+    <axis xyz="0.0 1.0 0.0" />
+  </joint>
+  <link name="left_wheel_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 -0.175768 -0.048124" />
+      <mass value="0.5" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 -0.175768 -0.048124" />
+      <geometry>
+        <mesh filename="meshes/mechabot_left_wheel.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.000000" />
+      <geometry>
+        <sphere radius="0.051258" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0" />
+      </material>
+    </collision>
+  </link>
+  <joint name="left_wheel_joint" type="continuous">
+    <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.175768 0.030431" />
+    <parent link="base_link" />
+    <child link="left_wheel_link" />
+    <axis xyz="0.0 1.0 0.0" />
+  </joint>
+  <link name="front_right_castor_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.136493 0.123513 -0.029723" />
+      <mass value="0.2" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.136493 0.123513 -0.029723" />
+      <geometry>
+        <mesh filename="meshes/front_right_castor.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0" />
+      </material>
+    </visual>
+  </link>
+  <joint name="front_right_castor_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.136493 -0.123513 0.008846" />
+    <parent link="base_link" />
+    <child link="front_right_castor_link" />
+  </joint>
+  <link name="front_left_castor_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.136493 -0.123513 -0.029723" />
+      <mass value="0.2" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.136493 -0.123513 -0.029723" />
+      <geometry>
+        <mesh filename="meshes/front_left_castor.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0" />
+      </material>
+    </visual>
+  </link>
+  <joint name="front_left_castor_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.136493 0.123513 0.008846" />
+    <parent link="base_link" />
+    <child link="front_left_castor_link" />
+  </joint>
+  <link name="rear_right_castor_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.136493 0.123513 -0.029016" />
+      <mass value="0.2" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.136493 0.123513 -0.029016" />
+      <geometry>
+        <mesh filename="meshes/rear_right_castor.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0" />
+      </material>
+    </visual>
+  </link>
+  <joint name="rear_right_castor_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="-0.136493 -0.123513 0.008988" />
+    <parent link="base_link" />
+    <child link="rear_right_castor_link" />
+  </joint>
+  <link name="rear_left_castor_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.136493 -0.123513 -0.029016" />
+      <mass value="0.2" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.136493 -0.123513 -0.029016" />
+      <geometry>
+        <mesh filename="meshes/rear_left_castor.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0" />
+      </material>
+    </visual>
+  </link>
+  <joint name="rear_left_castor_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="-0.136493 0.123513 0.008988" />
+    <parent link="base_link" />
+    <child link="rear_left_castor_link" />
+  </joint>
+  <link name="toplid_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.001592" />
+      <mass value="2.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.159232" />
+      <geometry>
+        <mesh filename="meshes/mechabot_toplid.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="red">
+        <color rgba="0.6 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.000000" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.289044 0.266028 0.016985" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="toplid_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 0.141540" />
+    <parent link="base_link" />
+    <child link="toplid_link" />
+  </joint>
+  <link name="lidar_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.044962 0.000000 -0.186833" />
+      <mass value="0.5" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.044962 0.000000 -0.186833" />
+      <geometry>
+        <mesh filename="meshes/mechabot_lidar.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.6 0.6 0.0 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.044962 0.000000 -0.186833" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.055 0.055 0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.044962 0.000000 0.169140" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+  <link name="camera_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.189484 0.000000 -0.130217" />
+      <mass value="0.1" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.189484 0.000000 -0.130217" />
+      <geometry>
+        <mesh filename="meshes/mechabot_camera.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="green">
+        <color rgba="0.0 0.6 0.0 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.189484 0.000000 -0.130217" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.045 0.035 0.035" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.189484 0.000000 0.112524" />
+    <parent link="base_link" />
+    <child link="camera_link" />
+  </joint>
+  <link name="camera_link_optical" />
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link" />
+    <child link="camera_link_optical" />
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0.000000 0.000000 0.000000" />
+  </joint>
+  <link name="imu_link">
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.049539" />
+      <mass value="0.1" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 -0.049539" />
+      <geometry>
+        <mesh filename="meshes/mechabot_imu.stl" scale="0.00160580 0.00190020 0.00141540" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 -0.049539" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.035 0.035 0.018" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.000000 0.000000 0.031846" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+  </joint>
+</robot>

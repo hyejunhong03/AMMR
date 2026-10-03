@@ -1,0 +1,540 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "firefighter"
+    doc = """Generated from Composed Stage of root layer /home/autolab/AMMR/isaac_usd/mycobot_280_adaptive_gripper/mycobot_280_adaptive_gripper/payloads/base.usd
+"""
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    subLayers = [
+        @./robot.usda@
+    ]
+    upAxis = "Z"
+)
+
+def Xform "firefighter" (
+    prepend apiSchemas = ["GeomModelAPI"]
+    assetInfo = {
+        string name = "firefighter"
+    }
+    kind = "component"
+)
+{
+    float3[] extentsHint = [(-0.05498774, -0.11486945, -0.030000003), (0.1558462, 0.0750002, 0.44908375), (3.4028235e38, 3.4028235e38, 3.4028235e38), (-3.4028235e38, -3.4028235e38, -3.4028235e38), (3.4028235e38, 3.4028235e38, 3.4028235e38), (-3.4028235e38, -3.4028235e38, -3.4028235e38), (-0.05498774, -0.11486945, -0.030000003), (0.1558462, 0.0750002, 0.44908375)]
+
+    def Scope "Materials"
+    {
+    }
+
+    def Scope "Geometry"
+    {
+        def Xform "g_base"
+        {
+            def Xform "G_base"
+            {
+                quatf xformOp:orient = (0.70710546, 0, 0, 0.7071081)
+                float3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0, 0, -0.03)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Xform "tn__" (
+                    displayName = ""
+                    instanceable = true
+                    prepend references = @./instances.usda@</Instances/tn__>
+                )
+                {
+                    quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                    double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                    double3 xformOp:translate = (0, 0, 0.016)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Xform "_1" (
+                    displayName = ""
+                    instanceable = true
+                    prepend references = @./instances.usda@</Instances/_1>
+                )
+                {
+                    quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                    double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                    double3 xformOp:translate = (0, 0, 0.016)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            def Xform "joint1" (
+                instanceable = true
+                prepend references = @./instances.usda@</Instances/joint1>
+            )
+            {
+                quatd xformOp:orient = (0.7071054578, 0, 0, -0.7071080804)
+                double3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Xform "joint2"
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0, 0, 0.13156)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Xform "joint2" (
+                    instanceable = true
+                    prepend references = @./instances.usda@</Instances/joint2>
+                )
+                {
+                    quatd xformOp:orient = (0.7071054578, 0, 0, -0.7071080804)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, -0.06096)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Xform "joint3"
+                {
+                    quatf xformOp:orient = (0.49999815, 0.50000185, 0.5, -0.5)
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Xform "joint3" (
+                        instanceable = true
+                        prepend references = @./instances.usda@</Instances/joint3>
+                    )
+                    {
+                        quatd xformOp:orient = (0.7071054578, 0, -0.7071080804, 0)
+                        double3 xformOp:scale = (1, 1, 1)
+                        double3 xformOp:translate = (0, 0, 0.03256)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                    }
+
+                    def Xform "joint4"
+                    {
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        float3 xformOp:scale = (1, 1, 1)
+                        double3 xformOp:translate = (-0.1104, 0, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                        def Xform "joint4" (
+                            instanceable = true
+                            prepend references = @./instances.usda@</Instances/joint4>
+                        )
+                        {
+                            quatd xformOp:orient = (0.7071054578, 0, -0.7071080804, 0)
+                            double3 xformOp:scale = (1, 1, 1)
+                            double3 xformOp:translate = (0, 0, 0.03056)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                        }
+
+                        def Xform "joint5"
+                        {
+                            quatf xformOp:orient = (-0.70710546, 0, 0, 0.7071081)
+                            float3 xformOp:scale = (1, 1, 1)
+                            double3 xformOp:translate = (-0.096, 0, 0.06462)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                            def Xform "joint5" (
+                                instanceable = true
+                                prepend references = @./instances.usda@</Instances/joint5>
+                            )
+                            {
+                                quatd xformOp:orient = (0.7071054578, -0.7071080804, 0, 0)
+                                double3 xformOp:scale = (1, 1, 1)
+                                double3 xformOp:translate = (0, 0, -0.03356)
+                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                            }
+
+                            def Xform "joint6"
+                            {
+                                quatf xformOp:orient = (0.49999815, 0.5, -0.5, 0.50000185)
+                                float3 xformOp:scale = (1, 1, 1)
+                                double3 xformOp:translate = (0, -0.07318, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                def Xform "joint6" (
+                                    instanceable = true
+                                    prepend references = @./instances.usda@</Instances/joint6>
+                                )
+                                {
+                                    quatd xformOp:orient = (1, 0, 0, 0)
+                                    double3 xformOp:scale = (1, 1, 1)
+                                    double3 xformOp:translate = (0, 0, -0.038)
+                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                }
+
+                                def Xform "joint6_flange"
+                                {
+                                    quatf xformOp:orient = (-0.70710546, 0.7071081, 0, 0)
+                                    float3 xformOp:scale = (1, 1, 1)
+                                    double3 xformOp:translate = (0, 0.0456, 0)
+                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                    def Xform "joint7" (
+                                        instanceable = true
+                                        prepend references = @./instances.usda@</Instances/joint7>
+                                    )
+                                    {
+                                        quatd xformOp:orient = (1, 0, 0, 0)
+                                        double3 xformOp:scale = (1, 1, 1)
+                                        double3 xformOp:translate = (0, 0, -0.012)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                    }
+
+                                    def Xform "gripper_base"
+                                    {
+                                        quatf xformOp:orient = (0.7042004, 0.7100013, 0, 0)
+                                        float3 xformOp:scale = (1, 1, 1)
+                                        double3 xformOp:translate = (0, 0.0119995962, 0.03409844297)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                        def Xform "tn__" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/tn___1_1>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, -0.02752000046, 0.01385000038)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "_1" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/_1_1_1>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0, 0, 1, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, -0.01229153061, 0.01480000019)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "_2" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/_2>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (1, 0, 0, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, 0, 0)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+                                    }
+
+                                    def Xform "gripper_left3"
+                                    {
+                                        quatf xformOp:orient = (0.7042004, 0.7100013, 0, 0)
+                                        float3 xformOp:scale = (1, 1, 1)
+                                        double3 xformOp:translate = (-0.012, -0.00004101790594, 0.03899983175)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                        def Xform "gripper_left3" (
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/gripper_left3>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0.7007584572, -0.0945386216, 0.7007585168, 0.0945386216)
+                                            double3 xformOp:scale = (0.001000000047, 0.00100000028, 0.00100000028)
+                                            double3 xformOp:translate = (-0.00125, -0.00001999998093, 0.001800000191)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "gripper_left1"
+                                        {
+                                            quatf xformOp:orient = (1, 0, 0, 0)
+                                            float3 xformOp:scale = (1, 1, 1)
+                                            double3 xformOp:translate = (-0.027, 0.016, 0)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                            def Xform "gripper_left1"
+                                            {
+                                                quatf xformOp:orient = (1, 0, 0, 0)
+                                                float3 xformOp:scale = (1, 1, 1)
+                                                double3 xformOp:translate = (0.039, -0.0133, -0.012)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                                def Xform "tn__" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/tn___2>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0, 0.5854266882, -0.8107253313, 0)
+                                                    double3 xformOp:scale = (0.0009999994654, 0.0009999994654, 0.001000000047)
+                                                    double3 xformOp:translate = (-0.03296075058, 0.03464040375, 0.008800000191)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+
+                                                def Xform "_1" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/_1_2>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0.9999982119, 0, 0, -0.001888502971)
+                                                    double3 xformOp:scale = (0.001000000164, 0.001000000164, 0.001000000047)
+                                                    double3 xformOp:translate = (-0.03006970787, 0.05332347488, 0.003799999952)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+                                            }
+
+                                            def Xform "gripper_left1_1" (
+                                                displayName = "gripper_left1"
+                                            )
+                                            {
+                                                uniform token purpose = "guide"
+                                                quatf xformOp:orient = (1, 0, 0, 0)
+                                                float3 xformOp:scale = (1, 1, 1)
+                                                double3 xformOp:translate = (0.039, -0.0133, -0.012)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                                def Xform "tn__" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/tn___2_1>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0, 0.5854266882, -0.8107253313, 0)
+                                                    double3 xformOp:scale = (0.0009999994654, 0.0009999994654, 0.001000000047)
+                                                    double3 xformOp:translate = (-0.03296075058, 0.03464040375, 0.008800000191)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+
+                                                def Xform "_1" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/_1_2_1>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0.9999982119, 0, 0, -0.001888502971)
+                                                    double3 xformOp:scale = (0.001000000164, 0.001000000164, 0.001000000047)
+                                                    double3 xformOp:translate = (-0.03006970787, 0.05332347488, 0.003799999952)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    def Xform "gripper_left2" (
+                                        instanceable = true
+                                        prepend references = @./instances.usda@</Instances/gripper_left2>
+                                    )
+                                    {
+                                        quatd xformOp:orient = (0.001048614384, -0.2556411016, 0.003965549865, -0.9667630537)
+                                        double3 xformOp:scale = (0.0009999999311, 0.001000000047, 0.0009999999311)
+                                        double3 xformOp:translate = (-0.0195056057, 0.00481694829, 0.06853022614)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                    }
+
+                                    def Xform "gripper_right3"
+                                    {
+                                        quatf xformOp:orient = (0.7042004, 0.7100013, 0, 0)
+                                        float3 xformOp:scale = (1, 1, 1)
+                                        double3 xformOp:translate = (0.012, -0.00004101790594, 0.03899983175)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                        def Xform "gripper_right3" (
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/gripper_right3>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0.7066819072, -0.02450891212, -0.7066819072, -0.02450891212)
+                                            double3 xformOp:scale = (0.001000000047, 0.0009999996983, 0.0009999996983)
+                                            double3 xformOp:translate = (0.00025, -0.00001999998093, -0.003199999809)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "gripper_right1"
+                                        {
+                                            quatf xformOp:orient = (1, 0, 0, 0)
+                                            float3 xformOp:scale = (1, 1, 1)
+                                            double3 xformOp:translate = (0.027, 0.016, 0)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                            def Xform "gripper_right1"
+                                            {
+                                                quatf xformOp:orient = (1, 0, 0, 0)
+                                                float3 xformOp:scale = (1, 1, 1)
+                                                double3 xformOp:translate = (-0.039, -0.0133, -0.012)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                                def Xform "tn__" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/_1_2_2>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0, 0.001887003076, -0.9999982119, 0)
+                                                    double3 xformOp:scale = (0.001000000164, 0.001000000164, 0.001000000047)
+                                                    double3 xformOp:translate = (0.02885483551, 0.05369546127, 0.003799999952)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+
+                                                def Xform "_1" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/tn___2_2>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0.810724318, 0, 0, -0.5854281187)
+                                                    double3 xformOp:scale = (0.001000000397, 0.001000000397, 0.001000000047)
+                                                    double3 xformOp:translate = (0.03174581718, 0.03501237869, -0.001200000048)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+                                            }
+
+                                            def Xform "gripper_right1_1" (
+                                                displayName = "gripper_right1"
+                                            )
+                                            {
+                                                uniform token purpose = "guide"
+                                                quatf xformOp:orient = (1, 0, 0, 0)
+                                                float3 xformOp:scale = (1, 1, 1)
+                                                double3 xformOp:translate = (-0.039, -0.0133, -0.012)
+                                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                                def Xform "tn__" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/_1_2_1>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0, 0.001887003076, -0.9999982119, 0)
+                                                    double3 xformOp:scale = (0.001000000164, 0.001000000164, 0.001000000047)
+                                                    double3 xformOp:translate = (0.02885483551, 0.05369546127, 0.003799999952)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+
+                                                def Xform "_1" (
+                                                    displayName = ""
+                                                    instanceable = true
+                                                    prepend references = @./instances.usda@</Instances/tn___2_1>
+                                                )
+                                                {
+                                                    quatd xformOp:orient = (0.810724318, 0, 0, -0.5854281187)
+                                                    double3 xformOp:scale = (0.001000000397, 0.001000000397, 0.001000000047)
+                                                    double3 xformOp:translate = (0.03174581718, 0.03501237869, -0.001200000048)
+                                                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    def Xform "gripper_right2" (
+                                        instanceable = true
+                                        prepend references = @./instances.usda@</Instances/gripper_left2_1>
+                                    )
+                                    {
+                                        quatd xformOp:orient = (0.9649694011, 0.003958226677, -0.2623303825, -0.001076048789)
+                                        double3 xformOp:scale = (0.0009999996983, 0.001000000047, 0.0009999996983)
+                                        double3 xformOp:translate = (0.01839793777, 0.01101509498, 0.06876741604)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                    }
+
+                                    def Xform "gripper_base_1" (
+                                        displayName = "gripper_base"
+                                    )
+                                    {
+                                        uniform token purpose = "guide"
+                                        quatf xformOp:orient = (0.7042004, 0.7100013, 0, 0)
+                                        float3 xformOp:scale = (1, 1, 1)
+                                        double3 xformOp:translate = (0, 0.0119995962, 0.03409844297)
+                                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                        def Xform "tn__" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/tn___1_2>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, -0.02752000046, 0.01385000038)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "_1" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/_1_1_2>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (0, 0, 1, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, -0.01229153061, 0.01480000019)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+
+                                        def Xform "_2" (
+                                            displayName = ""
+                                            instanceable = true
+                                            prepend references = @./instances.usda@</Instances/_2_1>
+                                        )
+                                        {
+                                            quatd xformOp:orient = (1, 0, 0, 0)
+                                            double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                                            double3 xformOp:translate = (0, 0, 0)
+                                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            def Xform "G_base_1" (
+                displayName = "G_base"
+            )
+            {
+                uniform token purpose = "guide"
+                quatf xformOp:orient = (0.70710546, 0, 0, 0.7071081)
+                float3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0, 0, -0.03)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Xform "tn__" (
+                    displayName = ""
+                    instanceable = true
+                    prepend references = @./instances.usda@</Instances/tn___1>
+                )
+                {
+                    quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                    double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                    double3 xformOp:translate = (0, 0, 0.016)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Xform "_1" (
+                    displayName = ""
+                    instanceable = true
+                    prepend references = @./instances.usda@</Instances/_1_1>
+                )
+                {
+                    quatd xformOp:orient = (0.7071067691, 0.7071067691, 0, 0)
+                    double3 xformOp:scale = (0.001000000047, 0.001000000047, 0.001000000047)
+                    double3 xformOp:translate = (0, 0, 0.016)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+        }
+    }
+
+    def Scope "Physics"
+    {
+    }
+
+    def Scope "VisualMaterials"
+    {
+    }
+}
+

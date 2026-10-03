@@ -1,0 +1,202 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "mycobot_280_m5_adaptive_gripper"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    subLayers = [
+        @./physics.usda@
+    ]
+    upAxis = "Z"
+)
+
+over "mycobot_280_m5_adaptive_gripper"
+{
+    over "Physics"
+    {
+        over "joint2_to_joint1" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "joint3_to_joint2" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "joint4_to_joint3" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "joint5_to_joint4" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "joint6_to_joint5" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "joint6output_to_joint6" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_controller" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_left2" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_left3_to_gripper_left1" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_right3" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_right2" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_right3_to_gripper_right1" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+            prepend apiSchemas = ["MjcJointAPI"]
+        )
+        {
+        }
+
+        def MjcActuator "joint2_to_joint1_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint2_to_joint1>
+        }
+
+        def MjcActuator "joint3_to_joint2_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint3_to_joint2>
+        }
+
+        def MjcActuator "joint4_to_joint3_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint4_to_joint3>
+        }
+
+        def MjcActuator "joint5_to_joint4_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint5_to_joint4>
+        }
+
+        def MjcActuator "joint6_to_joint5_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint6_to_joint5>
+        }
+
+        def MjcActuator "joint6output_to_joint6_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/joint6output_to_joint6>
+        }
+
+        def MjcActuator "gripper_controller_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_controller>
+        }
+
+        def MjcActuator "gripper_base_to_gripper_left2_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_left2>
+        }
+
+        def MjcActuator "gripper_left3_to_gripper_left1_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_left3_to_gripper_left1>
+        }
+
+        def MjcActuator "gripper_base_to_gripper_right3_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_right3>
+        }
+
+        def MjcActuator "gripper_base_to_gripper_right2_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_right2>
+        }
+
+        def MjcActuator "gripper_right3_to_gripper_right1_actuator"
+        {
+            uniform double mjc:forceRange:max = 1000
+            uniform double mjc:forceRange:min = -1000
+            custom rel mjc:target
+            append rel mjc:target = </mycobot_280_m5_adaptive_gripper/Physics/gripper_right3_to_gripper_right1>
+        }
+    }
+}
+

@@ -1,0 +1,449 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "firefighter"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+over "firefighter"
+{
+    over "Geometry"
+    {
+        over "g_base" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsArticulationRootAPI", "NewtonArticulationRootAPI", "PhysicsMassAPI"]
+        )
+        {
+            bool newton:selfCollisionEnabled = 0
+            point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+            over "joint2" (
+                prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+            )
+            {
+                point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                over "joint3" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                )
+                {
+                    point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                    over "joint4" (
+                        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                    )
+                    {
+                        point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                        over "joint5" (
+                            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                        )
+                        {
+                            point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                            over "joint6" (
+                                prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                            )
+                            {
+                                point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                                over "joint6_flange" (
+                                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                )
+                                {
+                                    point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                                    over "gripper_left3" (
+                                        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                    )
+                                    {
+                                        point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                                        over "gripper_left1" (
+                                            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                        )
+                                        {
+                                            point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+                                        }
+                                    }
+
+                                    over "gripper_left2" (
+                                        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                    )
+                                    {
+                                        point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+                                    }
+
+                                    over "gripper_right3" (
+                                        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                    )
+                                    {
+                                        point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+                                        over "gripper_right1" (
+                                            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                        )
+                                        {
+                                            point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+                                        }
+                                    }
+
+                                    over "gripper_right2" (
+                                        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+                                    )
+                                    {
+                                        point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+            float physics:mass = 0.1
+            quatf physics:principalAxes = (1, 0, 0, 0)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        def PhysicsRevoluteJoint "joint2_to_joint1" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2>
+            point3f physics:localPos0 = (0, 0, 0.13156)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -167.99695
+            float physics:upperLimit = 167.99695
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "joint3_to_joint2" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3>
+            point3f physics:localPos0 = (0, 0, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.49999815, 0.50000185, 0.5, -0.5)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -139.9965
+            float physics:upperLimit = 139.9965
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "joint4_to_joint3" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4>
+            point3f physics:localPos0 = (-0.1104, -1.009742e-28, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -149.99461
+            float physics:upperLimit = 149.99461
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "joint5_to_joint4" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5>
+            point3f physics:localPos0 = (-0.096, 6.5874657e-23, 0.06462)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.70710546, 9.283799e-17, 0, -0.7071081)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -149.99461
+            float physics:upperLimit = 149.99461
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "joint6_to_joint5" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6>
+            point3f physics:localPos0 = (0, -0.07318, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.49999815, 0.5, -0.5, 0.50000185)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -154.99654
+            float physics:upperLimit = 159.99846
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "joint6output_to_joint6" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange>
+            point3f physics:localPos0 = (-1.3877788e-17, 0.0456, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.70710546, -0.7071081, -1.6653345e-16, 1.4712581e-16)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -179.99985
+            float physics:upperLimit = 179.99985
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_controller" (
+            prepend apiSchemas = ["NewtonJointAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_left3>
+            point3f physics:localPos0 = (-0.012, -0.000041017905, 0.038999833)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (-0.7042004, -0.7100013, -1.110223e-16, 6.8087896e-17)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -42.398876
+            float physics:upperLimit = 8.594367
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_base_to_gripper_left2" (
+            prepend apiSchemas = ["NewtonJointAPI", "NewtonMimicAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            rel newton:mimicJoint = </firefighter/Physics/gripper_controller>
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_left2>
+            point3f physics:localPos0 = (-0.005, -0.0002214967, 0.06099909)
+            point3f physics:localPos1 = (-16.311686, 5.100058, 0.65946645)
+            quatf physics:localRot0 = (-0.7042004, -0.7100013, -1.110223e-16, 6.8087896e-17)
+            quatf physics:localRot1 = (-0.02781517, 0.23302741, 0.41028392, 0.88124436)
+            float physics:lowerLimit = -45.836624
+            float physics:upperLimit = 28.64789
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_left3_to_gripper_left1" (
+            prepend apiSchemas = ["NewtonJointAPI", "NewtonMimicAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:mimicCoef1 = -1
+            rel newton:mimicJoint = </firefighter/Physics/gripper_controller>
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_left3>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_left3/gripper_left1>
+            point3f physics:localPos0 = (-0.027, 0.016, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -28.64789
+            float physics:upperLimit = 28.64789
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_base_to_gripper_right3" (
+            prepend apiSchemas = ["NewtonJointAPI", "NewtonMimicAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:mimicCoef1 = -1
+            rel newton:mimicJoint = </firefighter/Physics/gripper_controller>
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_right3>
+            point3f physics:localPos0 = (0.012, -0.000041017905, 0.038999833)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (-0.7042004, -0.7100013, -1.110223e-16, 6.8087896e-17)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -8.594367
+            float physics:upperLimit = 40.107044
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_base_to_gripper_right2" (
+            prepend apiSchemas = ["NewtonJointAPI", "NewtonMimicAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            float newton:mimicCoef1 = -1
+            rel newton:mimicJoint = </firefighter/Physics/gripper_controller>
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_right2>
+            point3f physics:localPos0 = (0.005, -0.0002214967, 0.06099909)
+            point3f physics:localPos1 = (-15.440117, -11.299942, 0.16384542)
+            quatf physics:localRot0 = (-0.7042004, -0.7100013, -1.110223e-16, 6.8087896e-17)
+            quatf physics:localRot1 = (0.029440107, 0.9329899, 0.2536367, -0.2536367)
+            float physics:lowerLimit = -28.64789
+            float physics:upperLimit = 45.836624
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsRevoluteJoint "gripper_right3_to_gripper_right1" (
+            prepend apiSchemas = ["NewtonJointAPI", "NewtonMimicAPI", "PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 1.7453293
+            float drive:angular:physics:maxForce = 1000
+            float drive:angular:physics:stiffness = 17.453293
+            uniform token drive:angular:physics:type = "force"
+            rel newton:mimicJoint = </firefighter/Physics/gripper_controller>
+            float newton:velocityLimit = 2
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_right3>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_right3/gripper_right1>
+            point3f physics:localPos0 = (0.027, 0.016, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -28.64789
+            float physics:upperLimit = 28.64789
+            custom float urdf:limit:effort = 1000
+        }
+
+        def PhysicsFixedJoint "root_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </firefighter>
+            custom rel physics:body1
+            append rel physics:body1 = </firefighter/Geometry/g_base>
+            point3f physics:localPos0 = (0, 0, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+    }
+}
+

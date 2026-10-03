@@ -1,0 +1,279 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "mechabot"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+over "mechabot"
+{
+    over "Geometry"
+    {
+        over "base_footprint"
+        {
+            over "base_link" (
+                prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsArticulationRootAPI", "NewtonArticulationRootAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+            )
+            {
+                double[] newton:inertia = [0.02, 0.02, 0.03, 0, 0, 0]
+                bool newton:selfCollisionEnabled = 0
+                point3f physics:centerOfMass = (0, 0, -0.0125)
+                float3 physics:diagonalInertia = (0.02, 0.02, 0.03)
+                float physics:mass = 5
+                quatf physics:principalAxes = (1, 0, 0, 0)
+
+                over "right_wheel_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.0003, 0.0003, 0.0003, 0, 0, 0]
+                    point3f physics:centerOfMass = (0, 0.0925, -0.034)
+                    float3 physics:diagonalInertia = (0.0003, 0.0003, 0.0003)
+                    float physics:mass = 0.5
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "left_wheel_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.0003, 0.0003, 0.0003, 0, 0, 0]
+                    point3f physics:centerOfMass = (0, -0.0925, -0.034)
+                    float3 physics:diagonalInertia = (0.0003, 0.0003, 0.0003)
+                    float physics:mass = 0.5
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "front_right_castor_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.00005, 0.00005, 0.00005, 0, 0, 0]
+                    point3f physics:centerOfMass = (-0.085, 0.065, -0.021)
+                    float3 physics:diagonalInertia = (0.00005, 0.00005, 0.00005)
+                    float physics:mass = 0.05
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "front_left_castor_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.00005, 0.00005, 0.00005, 0, 0, 0]
+                    point3f physics:centerOfMass = (-0.085, -0.065, -0.021)
+                    float3 physics:diagonalInertia = (0.00005, 0.00005, 0.00005)
+                    float physics:mass = 0.05
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "rear_right_castor_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.00005, 0.00005, 0.00005, 0, 0, 0]
+                    point3f physics:centerOfMass = (0.085, 0.065, -0.0205)
+                    float3 physics:diagonalInertia = (0.00005, 0.00005, 0.00005)
+                    float physics:mass = 0.05
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "rear_left_castor_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.00005, 0.00005, 0.00005, 0, 0, 0]
+                    point3f physics:centerOfMass = (0.085, -0.065, -0.0205)
+                    float3 physics:diagonalInertia = (0.00005, 0.00005, 0.00005)
+                    float physics:mass = 0.05
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "toplid_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.01, 0.01, 0.015, 0, 0, 0]
+                    point3f physics:centerOfMass = (0, 0, -0.001125)
+                    float3 physics:diagonalInertia = (0.01, 0.01, 0.015)
+                    float physics:mass = 2
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "lidar_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.0002, 0.0002, 0.0002, 0, 0, 0]
+                    point3f physics:centerOfMass = (-0.028, 0, -0.132)
+                    float3 physics:diagonalInertia = (0.0002, 0.0002, 0.0002)
+                    float physics:mass = 0.2
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "camera_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.0001, 0.0001, 0.0001, 0, 0, 0]
+                    point3f physics:centerOfMass = (-0.118, 0, -0.092)
+                    float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+                    float physics:mass = 0.1
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+
+                over "imu_link" (
+                    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "NewtonMassAPI"]
+                )
+                {
+                    double[] newton:inertia = [0.00005, 0.00005, 0.00005, 0, 0, 0]
+                    point3f physics:centerOfMass = (0, 0, -0.035)
+                    float3 physics:diagonalInertia = (0.00005, 0.00005, 0.00005)
+                    float physics:mass = 0.05
+                    quatf physics:principalAxes = (1, 0, 0, 0)
+                }
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        def PhysicsRevoluteJoint "right_wheel_joint" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 17.453293
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/right_wheel_link>
+            point3f physics:localPos0 = (0, -0.0925, 0.0215)
+            point3f physics:localPos1 = (0, -92.49999, 34)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsRevoluteJoint "left_wheel_joint" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 17.453293
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/left_wheel_link>
+            point3f physics:localPos0 = (0, 0.0925, 0.0215)
+            point3f physics:localPos1 = (0, 92.49999, 34)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "front_right_castor_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/front_right_castor_link>
+            point3f physics:localPos0 = (0.085, -0.065, 0.00625)
+            point3f physics:localPos1 = (84.99999, -65, 20.999998)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "front_left_castor_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/front_left_castor_link>
+            point3f physics:localPos0 = (0.085, 0.065, 0.00625)
+            point3f physics:localPos1 = (84.99999, 65, 20.999998)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "rear_right_castor_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/rear_right_castor_link>
+            point3f physics:localPos0 = (-0.085, -0.065, 0.00635)
+            point3f physics:localPos1 = (-84.99999, -65, 20.499998)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "rear_left_castor_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/rear_left_castor_link>
+            point3f physics:localPos0 = (-0.085, 0.065, 0.00635)
+            point3f physics:localPos1 = (-84.99999, 65, 20.499998)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "toplid_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/toplid_link>
+            point3f physics:localPos0 = (0, 0, 0.1)
+            point3f physics:localPos1 = (0, 0, 112.49999)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "lidar_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/lidar_link>
+            point3f physics:localPos0 = (0.028, 0, 0.1195)
+            point3f physics:localPos1 = (27.999998, 0, 132)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "camera_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/camera_link>
+            point3f physics:localPos0 = (0.118, 0, 0.0795)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "imu_joint"
+        {
+            custom rel physics:body0
+            append rel physics:body0 = </mechabot/Geometry/base_footprint/base_link>
+            custom rel physics:body1
+            append rel physics:body1 = </mechabot/Geometry/base_footprint/base_link/imu_link>
+            point3f physics:localPos0 = (0, 0, 0.0225)
+            point3f physics:localPos1 = (0, 0, 35)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+    }
+}
+

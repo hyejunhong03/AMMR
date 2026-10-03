@@ -1,0 +1,76 @@
+{
+  "summaries": [
+    {
+      "file": "outputs/eval/setC_in_general_yposhard015k_snap_thr004_x47.json",
+      "overall": {
+        "n": 47,
+        "raw_success": 47,
+        "clean_success": 46,
+        "velocity_violations": 1,
+        "clean_rate": 0.9787234042553191,
+        "clean_wilson95": [
+          0.8888676347566887,
+          0.9962343289895351
+        ]
+      },
+      "in_train_xy_box": {
+        "n": 47,
+        "raw_success": 47,
+        "clean_success": 46,
+        "velocity_violations": 1,
+        "clean_rate": 0.9787234042553191,
+        "clean_wilson95": [
+          0.8888676347566887,
+          0.9962343289895351
+        ]
+      },
+      "outside_train_xy_box": {
+        "n": 0,
+        "raw_success": 0,
+        "clean_success": 0,
+        "velocity_violations": 0,
+        "clean_rate": null,
+        "clean_wilson95": null
+      },
+      "failure_classes": {
+        "success_with_state_jump": 1
+      }
+    },
+    {
+      "file": "outputs/eval/setC_in_ypos_high_spaced_yposhard015k_snap_thr004_x22.json",
+      "overall": {
+        "n": 22,
+        "raw_success": 20,
+        "clean_success": 20,
+        "velocity_violations": 0,
+        "clean_rate": 0.9090909090909091,
+        "clean_wilson95": [
+          0.7218461934161421,
+          0.9747051037171622
+        ]
+      },
+      "in_train_xy_box": {
+        "n": 22,
+        "raw_success": 20,
+        "clean_success": 20,
+        "velocity_violations": 0,
+        "clean_rate": 0.9090909090909091,
+        "clean_wilson95": [
+          0.7218461934161421,
+          0.9747051037171622
+        ]
+      },
+      "outside_train_xy_box": {
+        "n": 0,
+        "raw_success": 0,
+        "clean_success": 0,
+        "velocity_violations": 0,
+        "clean_rate": null,
+        "clean_wilson95": null
+      },
+      "failure_classes": {
+        "approach_miss": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "red_cube_single_object_pick_baseline_yposhard015k",
+  "created_local_date": "2026-10-01",
+  "status": "frozen_single_red_cube_in_range_baseline",
+  "git_commit": null,
+  "git_note": "AMMR is not a git repository in this workspace; use file paths and hashes below for reproducibility.",
+  "checkpoint": "outputs/train/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_from_base_20000/checkpoints/015000/pretrained_model",
+  "checkpoint_selection_basis": {
+    "selected_on": "outputs/eval/setB_in_ypos_high_yposhard_015000_snap_thr004.json",
+    "result": "clean=44/48, violations=0/48",
+    "note": "This set is now treated as checkpoint-selection/diagnostic, not final reporting, because many positions are within 3 mm of hard-correction training positions."
+  },
+  "training_dataset": "data/lerobot/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_train",
+  "training_dataset_components": [
+    "data/lerobot/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_train",
+    "data/lerobot/phase2_ypos_hard_correction"
+  ],
+  "dataset_stats": "data/lerobot/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_train/meta/stats.json",
+  "protocol": {
+    "task": "pick the red cube",
+    "object": "red_cube",
+    "fps": 10,
+    "max_steps": 450,
+    "gripper_snap": true,
+    "gripper_snap_threshold": 0.04,
+    "max_action_step": 0.05,
+    "max_joint_velocity": 0.5,
+    "n_action_steps": 50,
+    "noise_mode": "fixed-random",
+    "noise_seed": 0,
+    "reset_guard": "enabled in rollout_policy.py with start z-score, object position, and settle/motion checks",
+    "gripper_latch": false
+  },
+  "reported_existing_evals": {
+    "train60": {
+      "file": "outputs/eval/train60_yposhard015k_snap_thr004_x60.json",
+      "clean": "56/60",
+      "violations": "2/60"
+    },
+    "setB_in_general": {
+      "file": "outputs/eval/setB_in_yposhard015k_snap_thr004_x40.json",
+      "clean": "28/29",
+      "violations": "1/29",
+      "note": "29 solved; 11 candidates rejected by IK pose-cache generation."
+    },
+    "setB_in_ypos_high": {
+      "file": "outputs/eval/setB_in_ypos_high_yposhard_015000_snap_thr004.json",
+      "clean": "44/48",
+      "violations": "0/48",
+      "note": "selection/diagnostic only after leakage check."
+    },
+    "setB_out_y_edge_stress": {
+      "file": "outputs/eval/setB_out_y_edge_yposhard015k_snap_thr004_x34.json",
+      "clean": "16/34",
+      "violations": "0/34",
+      "note": "stress/extrapolation, excluded from in-range gate."
+    }
+  },
+  "setC_pending_final_evals": {
+    "setC_in_general": {
+      "position_file": "outputs/eval/phase2_setC_in_general_positions.json",
+      "pose_cache": "outputs/eval/phase2_setC_in_general_h020_d8_poses.json",
+      "pose_cache_counts": {
+        "entries": 60,
+        "solved": 47,
+        "rejects": {
+          "ik_no_vertical_approach_solution": 13
+        }
+      },
+      "nearest_train_filter": "candidate generation used original 60 solved poses plus hard raw 60 positions, min nearest train distance 0.004 m and min output distance 0.008 m",
+      "recommended_rollout_out": "outputs/eval/setC_in_general_yposhard015k_snap_thr004_x47.json"
+    },
+    "setC_in_ypos_high_spaced": {
+      "position_file": "outputs/eval/phase2_setC_in_ypos_high_spaced_positions.json",
+      "pose_cache": "outputs/eval/phase2_setC_in_ypos_high_spaced_h020_d8_poses.json",
+      "pose_cache_counts": {
+        "entries": 32,
+        "solved": 22,
+        "rejects": {
+          "ik_no_vertical_approach_solution": 10
+        }
+      },
+      "nearest_train_filter": "candidate generation used original 60 solved poses plus hard raw 60 positions, min nearest train distance 0.003 m and min output distance 0.003 m",
+      "note": "Leak-minimized hard-region check, but only 22 IK-solved positions; not enough for primary final metric.",
+      "recommended_rollout_out": "outputs/eval/setC_in_ypos_high_spaced_yposhard015k_snap_thr004_x22.json"
+    }
+  },
+  "supporting_reports": {
+    "leakage_check": "outputs/eval/yposhard015k_leakage_check.json",
+    "current_summary": "outputs/eval/yposhard015k_summary.json",
+    "current_failures": "outputs/eval/yposhard015k_failures.csv"
+  },
+  "script_hashes": {
+    "scripts/rollout_policy.py": "21565ac11fd0f3cc801289c5529268d288803190cd392fb88bf465a777205f8a",
+    "scripts/replay_trace_actions.py": "de112aeb91d33a31fb066b0221d3779b842d06ac2e37534c02d70af876c7d55a",
+    "scripts/summarize_pick_eval.py": "3d2aefecfa33b0477b1d72ad77021c4c86f14c03eb3c6e19609503a2b56ebdf2",
+    "scripts/generate_set_b_positions.py": "a94f9bb5cc62b470bb0ac1d45b08075459792174f8e155bd207eaccf025c2e5a",
+    "scripts/run_phase2_ypos_hard_train20k.sh": "0347246c3a3d7c9b132d7a7af612605c9de36bb6795840867c5079e5b9e6aab8"
+  },
+  "freeze_decision": {
+    "date_local": "2026-10-01",
+    "primary_gate": "passed",
+    "primary_eval": {
+      "file": "outputs/eval/setC_in_general_yposhard015k_snap_thr004_x47.json",
+      "raw": "47/47",
+      "clean": "46/47",
+      "violations": "1/47",
+      "clean95": [
+        0.889,
+        0.996
+      ],
+      "notes": [
+        "Independent set C generated after excluding original 60 and hard-correction raw 60 training positions.",
+        "Minimum nearest training xy distance among solved positions is 4.02 mm.",
+        "The only non-clean case succeeded physically but had a sim_state_spike, so it remains excluded from clean success."
+      ]
+    },
+    "secondary_hard_y_check": {
+      "file": "outputs/eval/setC_in_ypos_high_spaced_yposhard015k_snap_thr004_x22.json",
+      "raw": "20/22",
+      "clean": "20/22",
+      "violations": "0/22",
+      "clean95": [
+        0.722,
+        0.975
+      ],
+      "notes": [
+        "Leak-minimized high-y diagnostic check.",
+        "Small n because hard-correction data densely occupies the upper-y region, leaving little independent IK-solvable space."
+      ]
+    },
+    "gate_thresholds": {
+      "in_range_clean_success_min": 0.8,
+      "max_velocity_violation_rate": 0.05
+    },
+    "out_of_range_policy": "out-y-edge remains a stress/extrapolation test and is excluded from the in-range gate.",
+    "next_stage": "two_object_language_grounding"
+  },
+  "setC_completed_evals": {
+    "summary": "outputs/eval/setC_yposhard015k_summary.json",
+    "failures": "outputs/eval/setC_yposhard015k_failures.csv"
+  }
+}

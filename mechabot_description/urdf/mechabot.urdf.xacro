@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<robot name="mechabot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find mechabot_description)/urdf/mechabot_base.xacro" />
+    <xacro:include filename="$(find mechabot_description)/urdf/mechabot_sensors.xacro" />
+    <xacro:include filename="$(find mechabot_description)/urdf/mechabot_gazebo.xacro" />
+    <xacro:include filename="$(find mechabot_description)/urdf/mechabot_ros2control.xacro" />
+    <xacro:include filename="$(find mechabot_description)/urdf/mycobot_280_arm.xacro" />
+
+    <!-- AMMR mount: myCobot 280 sits on top of the body, above the toplid (z=0.1).
+         Rough placement, not measured from the CAD assembly; adjust visually. -->
+    <joint name="ammr_arm_mount_joint" type="fixed">
+        <origin xyz="0 0 0.15" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="g_base"/>
+    </joint>
+
+</robot>

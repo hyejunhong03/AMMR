@@ -1,0 +1,73 @@
+{
+  "name": "raw_recentered_safe_x130_210_y095_collection_summary",
+  "created_local_date": "2026-10-01",
+  "raw_dataset": "data/smolvla_raw_recentered_safe_x130_210_y095",
+  "episodes": 120,
+  "success": 120,
+  "success_rate": 1.0,
+  "failure_reasons": {
+    "none": 120
+  },
+  "task_names": {
+    "red_cube_recentered_safe_pick_only": 120
+  },
+  "instructions": {
+    "pick the red cube": 120
+  },
+  "demo_exit_codes": {
+    "0": 120
+  },
+  "object_position_range_m": {
+    "x": [
+      0.13,
+      0.21
+    ],
+    "y": [
+      -0.095,
+      0.095
+    ],
+    "z": [
+      0.115,
+      0.115
+    ]
+  },
+  "lift_delta_m": {
+    "min": 0.0598,
+    "median": 0.0605,
+    "max": 0.0608,
+    "mean": 0.060540833333333335
+  },
+  "num_steps": {
+    "min": 402.0,
+    "median": 425.0,
+    "max": 476.0,
+    "mean": 427.95
+  },
+  "duration_sec": {
+    "min": 180.0,
+    "median": 180.0,
+    "max": 180.0,
+    "mean": 180.0
+  },
+  "ik_tcp_error_m": {
+    "min": 1.6e-05,
+    "median": 7.65e-05,
+    "max": 0.000129,
+    "mean": 7.369166666666666e-05
+  },
+  "distance_from_base_m": {
+    "min": 0.1301,
+    "median": 0.18007,
+    "max": 0.23049,
+    "mean": 0.17941191666666667
+  },
+  "collection_settings": {
+    "collection_preset": "research_pick_only",
+    "close_rad": -0.245,
+    "arm_speed": 0.12,
+    "state_timeout_s": 18,
+    "poses_file": "outputs/eval/recentered_table_safe_placement_grid10mm_h020_d8_poses.json",
+    "shuffle": true,
+    "seed": 0
+  }
+}

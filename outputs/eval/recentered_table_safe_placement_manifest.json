@@ -1,0 +1,215 @@
+{
+  "name": "red_cube_recentered_table_safe_placement_workspace",
+  "created_local_date": "2026-10-01",
+  "status": "lerobot_dataset_ready_for_training",
+  "git_commit": null,
+  "git_note": "AMMR is not a git repository in this workspace; use file paths and constants for reproducibility.",
+  "purpose": "table은 recentered 상태로 유지하고, cube placement만 IK 검증을 통과한 내부 영역으로 제한해서 단일 red cube pick workspace를 넓히는 실험이다.",
+  "table": {
+    "source_file": "scripts/control_mycobot_sliders_gui.py",
+    "position_xyz_m": [0.174, 0.0, 0.08],
+    "size_xyz_m": [0.158, 0.236, 0.04],
+    "footprint_x_range_m": [0.095, 0.253],
+    "footprint_y_range_m": [-0.118, 0.118],
+    "top_z_m": 0.1
+  },
+  "safe_cube_placement": {
+    "source_file": "scripts/ammr_mycobot_interface.py",
+    "x_range_m": [0.13, 0.21],
+    "y_range_m": [-0.095, 0.095],
+    "z_m": 0.115,
+    "selection_basis": "recentered table 전체를 p1 vertical approach, 20 mm pre-approach, 8 descent interval, 60 mm lift 조건으로 IK grid 검증한 뒤, 전부 통과한 내부 영역만 선택했다."
+  },
+  "ik_validation": {
+    "full_table_grid": {
+      "positions": "outputs/eval/recentered_table_grid10mm_edges_positions.json",
+      "pose_cache": "outputs/eval/recentered_table_grid10mm_edges_h020_d8_poses.json",
+      "summary": "outputs/eval/recentered_table_grid10mm_edges_ik_summary.json",
+      "map_png": "outputs/eval/recentered_table_grid10mm_edges_ik_map.png",
+      "map_svg": "outputs/eval/recentered_table_grid10mm_edges_ik_map.svg",
+      "attempted": 308,
+      "solved": 259,
+      "pass_rate": 0.8409090909090909,
+      "reject_reason_counts": {
+        "no_lift_solution": 13,
+        "ik_no_vertical_approach_solution": 32,
+        "ik_no_grasp_solution_beyond_reach": 4
+      }
+    },
+    "safe_grid": {
+      "positions": "outputs/eval/recentered_table_safe_placement_grid10mm_positions.json",
+      "pose_cache": "outputs/eval/recentered_table_safe_placement_grid10mm_h020_d8_poses.json",
+      "report": "outputs/eval/recentered_table_safe_placement_grid10mm_h020_d8_report.txt",
+      "attempted": 180,
+      "solved": 180,
+      "pass_rate": 1.0
+    }
+  },
+  "recommended_collection": {
+    "raw_output_dir": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "count": 120,
+    "poses_file": "outputs/eval/recentered_table_safe_placement_grid10mm_h020_d8_poses.json",
+    "shuffle": true,
+    "seed": 0,
+    "object": "red_cube",
+    "park_non_targets": true,
+    "instruction": "pick the red cube",
+    "task_name": "red_cube_recentered_safe_pick_only",
+    "collection_preset": "research_pick_only",
+    "close_rad": -0.245,
+    "arm_speed": 0.12,
+    "state_timeout_s": 18
+  },
+  "collection_result": {
+    "summary": "outputs/eval/recentered_table_safe_raw_collection_summary.json",
+    "raw_dataset": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "episodes": 120,
+    "success": 120,
+    "success_rate": 1.0,
+    "demo_exit_code_0": 120,
+    "failure_reasons": {
+      "none": 120
+    },
+    "object_position_range_m": {
+      "x": [0.13, 0.21],
+      "y": [-0.095, 0.095],
+      "z": [0.115, 0.115]
+    },
+    "lift_delta_m": {
+      "min": 0.0598,
+      "median": 0.0605,
+      "max": 0.0608
+    },
+    "num_steps": {
+      "min": 402,
+      "median": 425,
+      "max": 476
+    }
+  },
+  "lerobot_dataset": {
+    "root": "data/lerobot/recentered_safe_x130_210_y095_train",
+    "repo_id": "ammr/recentered_safe_x130_210_y095_train",
+    "source_raw_dataset": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "conversion_command": ".venv/bin/python scripts/convert_to_lerobot.py --raw-dir data/smolvla_raw_recentered_safe_x130_210_y095 --repo-id ammr/recentered_safe_x130_210_y095_train --root data/lerobot/recentered_safe_x130_210_y095_train --only-success",
+    "episodes": 120,
+    "frames": 51354,
+    "fps": 10,
+    "image_key": "observation.images.wrist",
+    "image_shape": [256, 256, 3],
+    "state_dim": 7,
+    "action_dim": 7,
+    "stats": "data/lerobot/recentered_safe_x130_210_y095_train/meta/stats.json",
+    "info": "data/lerobot/recentered_safe_x130_210_y095_train/meta/info.json"
+  },
+  "training_plan": {
+    "script": "scripts/run_recentered_safe_from_yposhard015k_train20k.sh",
+    "output_dir": "outputs/train/recentered_safe_x130_210_y095_from_yposhard015k_20000",
+    "base_checkpoint": "outputs/train/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_from_base_20000/checkpoints/015000/pretrained_model",
+    "steps": 20000,
+    "save_freq": 5000,
+    "important_override": "--policy.pretrained_path must point to the frozen ypos-hard 015000 checkpoint; the inherited train_config.json still records the original SmolVLA base path."
+  },
+  "heldout_evaluation_plan": {
+    "positions": "outputs/eval/recentered_safe_setD_in_positions.json",
+    "pose_cache": "outputs/eval/recentered_safe_setD_in_h020_d8_poses.json",
+    "pose_cache_report": "outputs/eval/recentered_safe_setD_in_h020_d8_report.txt",
+    "position_count": 50,
+    "pose_cache_solved": 50,
+    "pose_cache_attempted": 50,
+    "pose_cache_status": "PLAN OK",
+    "position_seed": 3001,
+    "position_generation": "in-range random samples within safe placement x=[0.130,0.210], y=[-0.095,0.095], excluding raw collection positions and solved safe-grid points by nearest xy distance.",
+    "min_nearest_filter_distance_m": 0.003,
+    "min_output_distance_m": 0.006,
+    "eval_script": "scripts/run_recentered_safe_adapt_setD_eval.sh",
+    "expected_result_summary": "outputs/eval/recentered_safe_setD_yposhardadapt_summary.json",
+    "expected_failure_csv": "outputs/eval/recentered_safe_setD_yposhardadapt_failures.csv"
+  },
+  "heldout_evaluation_result": {
+    "support_source": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "summary": "outputs/eval/recentered_safe_setD_yposhardadapt_summary_rawtrain_support.json",
+    "failure_csv": "outputs/eval/recentered_safe_setD_yposhardadapt_failures_rawtrain_support.csv",
+    "note": "The first summary was accidentally computed against the old 60-pose local workspace. Use the rawtrain_support summary for recentered-safe reporting.",
+    "checkpoint_results": {
+      "005000": {"raw": [19, 50], "clean": [13, 50], "velocity_violations": [9, 50]},
+      "010000": {"raw": [16, 50], "clean": [15, 50], "velocity_violations": [2, 50]},
+      "015000": {"raw": [30, 50], "clean": [27, 50], "velocity_violations": [6, 50]},
+      "020000": {"raw": [36, 50], "clean": [36, 50], "velocity_violations": [1, 50]}
+    },
+    "current_best_checkpoint": "outputs/train/recentered_safe_x130_210_y095_from_yposhard015k_20000/checkpoints/020000/pretrained_model",
+    "gate_status": "not_passed",
+    "gate_reason": "best clean success is 36/50 = 72%, below the 80% gate, although velocity violations are 1/50 = 2%.",
+    "best_failure_summary": {
+      "approach_miss": 14,
+      "x_lt_0p17_failures": 11,
+      "abs_y_ge_0p07_failures": 6,
+      "main_pattern": "Remaining misses concentrate near the low-x side of the recentered safe workspace, with several high-|y| edge cases."
+    }
+  },
+  "heldout_evaluation_result_30k40k": {
+    "support_source": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "summary": "outputs/eval/recentered_safe_setD_yposhardadapt_30k40k_summary_rawtrain_support.json",
+    "failure_csv": "outputs/eval/recentered_safe_setD_yposhardadapt_30k40k_failures_rawtrain_support.csv",
+    "checkpoint_results": {
+      "030000": {"raw": [45, 50], "clean": [44, 50], "velocity_violations": [1, 50]},
+      "040000": {"raw": [46, 50], "clean": [45, 50], "velocity_violations": [2, 50]}
+    },
+    "current_best_checkpoint": "outputs/train/recentered_safe_x130_210_y095_from_yposhard015k_20000/checkpoints/040000/pretrained_model",
+    "conservative_alternative_checkpoint": "outputs/train/recentered_safe_x130_210_y095_from_yposhard015k_20000/checkpoints/030000/pretrained_model",
+    "gate_status": "passed_on_setD",
+    "gate_reason": "30k and 40k both exceed clean >= 80% and spike <= 5%; 40k has the highest clean success at 45/50 = 90% with 2/50 velocity violations.",
+    "raw_vs_clean_note": {
+      "episode_index_0based": 11,
+      "object_position": [0.1884, -0.0508, 0.115],
+      "success": true,
+      "velocity_ok": false,
+      "failure_class": "success_with_stuck",
+      "velocity_violation_type": "sim_state_spike",
+      "stuck_event": true,
+      "state_jump_event": true,
+      "tcp_target_distance_min_m": 0.02156156455075674,
+      "lift_m": 0.024,
+      "velocity_peak_joint": 6,
+      "velocity_peak_state_step": 1.9593749046325684,
+      "velocity_peak_action_step": 0.013293981552124023,
+      "interpretation": "Raw success but not clean: likely asymmetric/unstable contact or a temporary stuck contact. The command was smooth, but simulator state jumped."
+    },
+    "note": "Set D was used for checkpoint selection, so final reporting should use a fresh held-out Set E before freezing the recentered-safe baseline."
+  },
+  "final_heldout_setE_result": {
+    "checkpoint": "outputs/train/recentered_safe_x130_210_y095_from_yposhard015k_20000/checkpoints/040000/pretrained_model",
+    "positions": "outputs/eval/recentered_safe_setE_in_positions.json",
+    "pose_cache": "outputs/eval/recentered_safe_setE_in_h020_d8_poses.json",
+    "pose_cache_report": "outputs/eval/recentered_safe_setE_in_h020_d8_report.txt",
+    "rollout_result": "outputs/eval/recentered_safe_setE_yposhardadapt_040000_snap_thr004_x60.json",
+    "summary": "outputs/eval/recentered_safe_setE_yposhardadapt_040000_summary_rawtrain_support.json",
+    "failure_csv": "outputs/eval/recentered_safe_setE_yposhardadapt_040000_failures_rawtrain_support.csv",
+    "support_source": "data/smolvla_raw_recentered_safe_x130_210_y095",
+    "pose_cache_status": "PLAN OK",
+    "n": 60,
+    "raw_success": [52, 60],
+    "clean_success": [51, 60],
+    "velocity_violations": [1, 60],
+    "clean_rate": 0.85,
+    "raw_rate": 0.8666666666666667,
+    "velocity_violation_rate": 0.016666666666666666,
+    "clean_wilson95": [0.7388517410884038, 0.9190265075770431],
+    "failure_classes": {
+      "approach_miss": 8,
+      "success_with_state_jump": 1
+    },
+    "gate_status": "passed_final_heldout",
+    "gate_reason": "Set E clean success is 51/60 = 85%, above the 80% gate, and velocity violations are 1/60 = 1.7%, below the 5% gate.",
+    "baseline_status": "freeze_recommended"
+  },
+  "baseline_to_adapt_from": {
+    "checkpoint": "outputs/train/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_from_base_20000/checkpoints/015000/pretrained_model",
+    "dataset_stats": "data/lerobot/phase2_red_cube_pick_only_lift060_h020_d8_sample60_ypos_hard_train/meta/stats.json",
+    "manifest": "outputs/eval/red_cube_baseline_yposhard015k_manifest.json"
+  },
+  "notes": [
+    "첫 학습/평가 pass에서는 새 raw dataset을 기존 original-workspace episode와 섞지 않는다.",
+    "현재 grasp/lift specification에서는 recentered table 전체가 valid workspace가 아니다. 새 grasp family나 lift strategy를 검증하기 전까지 placement는 safe region 안으로 제한한다.",
+    "이 workspace의 최종 보고 수치는 collection grid 자체가 아니라 별도 held-out safe placement에서 측정한다."
+  ]
+}

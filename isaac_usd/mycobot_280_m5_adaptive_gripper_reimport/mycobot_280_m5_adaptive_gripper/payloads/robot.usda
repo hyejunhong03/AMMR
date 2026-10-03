@@ -1,0 +1,229 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "mycobot_280_m5_adaptive_gripper"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+over "mycobot_280_m5_adaptive_gripper" (
+    prepend apiSchemas = ["IsaacRobotAPI"]
+)
+{
+    prepend rel isaac:physics:robotJoints = [
+        </mycobot_280_m5_adaptive_gripper/Physics/root_joint>,
+        </mycobot_280_m5_adaptive_gripper/Physics/g_base_to_joint1>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint2_to_joint1>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint3_to_joint2>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint4_to_joint3>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint5_to_joint4>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint6_to_joint5>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint6output_to_joint6>,
+        </mycobot_280_m5_adaptive_gripper/Physics/joint6output_to_gripper_base>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_controller>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_left2>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_right3>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_base_to_gripper_right2>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_left3_to_gripper_left1>,
+        </mycobot_280_m5_adaptive_gripper/Physics/gripper_right3_to_gripper_right1>,
+    ]
+    prepend rel isaac:physics:robotLinks = [
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_left3>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_left3/gripper_left1>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_left2>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_right3>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_right3/gripper_right1>,
+        </mycobot_280_m5_adaptive_gripper/Geometry/g_base/joint1/joint2/joint3/joint4/joint5/joint6/joint6_flange/gripper_base/gripper_right2>,
+    ]
+    token isaac:robotType = "Default"
+
+    over "Geometry"
+    {
+        over "g_base" (
+            prepend apiSchemas = ["IsaacLinkAPI"]
+        )
+        {
+            over "joint1" (
+                prepend apiSchemas = ["IsaacLinkAPI"]
+            )
+            {
+                over "joint2" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                    over "joint3" (
+                        prepend apiSchemas = ["IsaacLinkAPI"]
+                    )
+                    {
+                        over "joint4" (
+                            prepend apiSchemas = ["IsaacLinkAPI"]
+                        )
+                        {
+                            over "joint5" (
+                                prepend apiSchemas = ["IsaacLinkAPI"]
+                            )
+                            {
+                                over "joint6" (
+                                    prepend apiSchemas = ["IsaacLinkAPI"]
+                                )
+                                {
+                                    over "joint6_flange" (
+                                        prepend apiSchemas = ["IsaacLinkAPI"]
+                                    )
+                                    {
+                                        over "gripper_base" (
+                                            prepend apiSchemas = ["IsaacLinkAPI"]
+                                        )
+                                        {
+                                            over "gripper_left3" (
+                                                prepend apiSchemas = ["IsaacLinkAPI"]
+                                            )
+                                            {
+                                                over "gripper_left1" (
+                                                    prepend apiSchemas = ["IsaacLinkAPI"]
+                                                )
+                                                {
+                                                }
+                                            }
+
+                                            over "gripper_left2" (
+                                                prepend apiSchemas = ["IsaacLinkAPI"]
+                                            )
+                                            {
+                                            }
+
+                                            over "gripper_right3" (
+                                                prepend apiSchemas = ["IsaacLinkAPI"]
+                                            )
+                                            {
+                                                over "gripper_right1" (
+                                                    prepend apiSchemas = ["IsaacLinkAPI"]
+                                                )
+                                                {
+                                                }
+                                            }
+
+                                            over "gripper_right2" (
+                                                prepend apiSchemas = ["IsaacLinkAPI"]
+                                            )
+                                            {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        over "root_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "g_base_to_joint1" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint2_to_joint1" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint3_to_joint2" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint4_to_joint3" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint5_to_joint4" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint6_to_joint5" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint6output_to_joint6" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "joint6output_to_gripper_base" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_controller" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_left2" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_left3_to_gripper_left1" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_right3" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_base_to_gripper_right2" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "gripper_right3_to_gripper_right1" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+    }
+}
+

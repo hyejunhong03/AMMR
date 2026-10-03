@@ -1,0 +1,590 @@
+<?xml version="1.0"?>
+<!--
+  myCobot 280 M5 + adaptive gripper, ported from
+  colcon_ws/src/mycobot_280_gazebo/urdf/mycobot_280_m5_adaptive_gripper_gazebo.urdf.xacro
+  (the Gazebo CLASSIC model used in the ICCE-Asia paper) to GZ Sim / Ignition, for
+  mounting on mechabot instead of standing on a fixed world anchor.
+
+  Kept as-is: all links, joints, meshes, and the engineering-estimated inertias/velocity
+  limits from the original file (see that file's comments for how those numbers were
+  derived).
+
+  Changed for GZ Sim:
+    - no "world" link/anchor — this file only declares an attach point (g_base); the
+      including xacro is responsible for one fixed joint from a mechabot link to g_base
+    - mesh paths now point at mechabot_description's own copy of the meshes (this
+      package doesn't depend on mycobot_description at runtime)
+    - <ros2_control> hardware plugin is ign_ros2_control/IgnitionSystem, matching
+      mechabot_ros2control.xacro — NOT gazebo_ros2_control/GazeboSystem
+    - no <gazebo><plugin> block here: mechabot_gazebo.xacro already loads one
+      ign_ros2_control plugin for the whole combined robot; a second one would start a
+      second controller_manager and conflict
+    - dropped for this pass, needs its own port later: the hand camera sensor
+      (libgazebo_ros_camera.so is Gazebo-Classic-only), the fingertip contact/bumper
+      sensors (libgazebo_ros_bumper.so, same issue), and the Gazebo/White-style
+      <material> tags (untested under GZ Sim's ogre2 renderer)
+    - kept as-is: the <mu1>/<mu2>/<kp>/<kd>/<minDepth>/<maxVel> fingertip friction tags,
+      same as mechabot_gazebo.xacro uses for the wheels and casters, proven to work
+      under this GZ Sim setup
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mycobot_280_arm">
+
+  <xacro:arg name="gripper_control" default="position"/>
+  <xacro:arg name="grip_kp" default="0.05"/>
+  <xacro:arg name="grip_ki" default="0.0"/>
+  <xacro:arg name="grip_kd" default="0.002"/>
+  <xacro:arg name="grip_damping" default="0.02"/>
+  <xacro:arg name="grip_effort" default="0.5"/>
+  <xacro:arg name="contact_min_depth" default="0.0"/>
+  <xacro:arg name="contact_mu" default="2.0"/>
+  <xacro:arg name="arm_control" default="position"/>
+  <xacro:arg name="arm_kp" default="200.0"/>
+  <xacro:arg name="arm_ki" default="0.0"/>
+  <xacro:arg name="arm_kd" default="2.0"/>
+
+  <xacro:property name="mesh" value="package://mechabot_description/meshes/mycobot_280"/>
+  <xacro:property name="gmesh" value="package://mechabot_description/meshes/mycobot_280"/>
+  <xacro:property name="gripper_control" value="$(arg gripper_control)"/>
+  <xacro:property name="arm_control" value="$(arg arm_control)"/>
+
+  <!-- Joint velocity limits. The real 280 M5 tops out around 110 deg/s, so ~1.9 rad/s
+       with margin. -->
+  <xacro:property name="arm_vel" value="2.0"/>
+  <xacro:property name="grip_vel" value="1.0"/>
+
+  <xacro:property name="grip_lo" value="-0.74"/>
+  <xacro:property name="grip_hi" value="0.15"/>
+  <xacro:property name="mim_pos_lo" value="-0.80"/>
+  <xacro:property name="mim_pos_hi" value="0.20"/>
+  <xacro:property name="mim_neg_lo" value="-0.20"/>
+  <xacro:property name="mim_neg_hi" value="0.80"/>
+
+  <!-- Home pose: arm straight up, gripper fully open. -->
+  <xacro:property name="grip_home" value="0.15"/>
+
+  <!-- Box-approximation inertia, with a floor for the fingers (see the classic file for
+       why: their real inertia is too small for a discrete force-control loop to hold). -->
+  <xacro:macro name="box_inertial" params="mass x y z xyz:='0 0 0' min_i:='0.0'">
+    <xacro:property name="fx" value="${max(x, 0.01)}"/>
+    <xacro:property name="fy" value="${max(y, 0.01)}"/>
+    <xacro:property name="fz" value="${max(z, 0.01)}"/>
+    <inertial>
+      <origin xyz="${xyz}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia ixx="${max(mass*(fy*fy+fz*fz)/12.0, float(min_i))}" ixy="0.0" ixz="0.0"
+               iyy="${max(mass*(fx*fx+fz*fz)/12.0, float(min_i))}" iyz="0.0"
+               izz="${max(mass*(fx*fx+fy*fy)/12.0, float(min_i))}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:property name="finger_inertia" value="1e-4"/>
+
+  <!-- ==================== arm links ==================== -->
+  <!-- MASSES: the real 280 M5 weighs ~850 g in total, the adaptive gripper ~100 g.
+       Per-link split is distributed by size, an estimate not a datasheet measurement. -->
+
+  <link name="g_base">
+    <visual>
+      <geometry><mesh filename="${mesh}/G_base.dae"/></geometry>
+      <origin xyz="0.0 0 -0.03" rpy="0 0 1.5708"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/G_base.dae"/></geometry>
+      <origin xyz="0.0 0 -0.03" rpy="0 0 1.5708"/>
+    </collision>
+    <xacro:box_inertial mass="0.25" x="0.12" y="0.12" z="0.08" xyz="0 0 0.0"/>
+  </link>
+
+  <link name="joint1">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint1.dae"/></geometry>
+      <origin xyz="0.0 0 0" rpy="0 0 -1.5708"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint1.dae"/></geometry>
+      <origin xyz="0.0 0 0" rpy="0 0 -1.5708"/>
+    </collision>
+    <xacro:box_inertial mass="0.12" x="0.08" y="0.08" z="0.13" xyz="0 0 0.065"/>
+  </link>
+
+  <link name="joint2">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint2.dae"/></geometry>
+      <origin xyz="0.0 0 -0.06096" rpy="0 0 -1.5708"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint2.dae"/></geometry>
+      <origin xyz="0.0 0 -0.06096" rpy="0 0 -1.5708"/>
+    </collision>
+    <xacro:box_inertial mass="0.13" x="0.06" y="0.06" z="0.07" xyz="0 0 0"/>
+  </link>
+
+  <link name="joint3">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint3.dae"/></geometry>
+      <origin xyz="0.0 0 0.03256" rpy="0 -1.5708 0"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint3.dae"/></geometry>
+      <origin xyz="0.0 0 0.03256" rpy="0 -1.5708 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.12" x="0.11" y="0.05" z="0.05" xyz="-0.055 0 0"/>
+  </link>
+
+  <link name="joint4">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint4.dae"/></geometry>
+      <origin xyz="0.0 0 0.03056" rpy="0 -1.5708 0"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint4.dae"/></geometry>
+      <origin xyz="0.0 0 0.03056" rpy="0 -1.5708 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.10" x="0.096" y="0.05" z="0.05" xyz="-0.048 0 0.03"/>
+  </link>
+
+  <link name="joint5">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint5.dae"/></geometry>
+      <origin xyz="0.0 0 -0.03356" rpy="-1.5708 0 0"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint5.dae"/></geometry>
+      <origin xyz="0.0 0 -0.03356" rpy="-1.5708 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.08" x="0.05" y="0.073" z="0.05" xyz="0 -0.036 0"/>
+  </link>
+
+  <link name="joint6">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint6.dae"/></geometry>
+      <origin xyz="0 0.00 -0.038" rpy="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint6.dae"/></geometry>
+      <origin xyz="0 0.00 -0.038" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.06" x="0.045" y="0.045" z="0.045" xyz="0 0.022 0"/>
+  </link>
+
+  <link name="joint6_flange">
+    <visual>
+      <geometry><mesh filename="${mesh}/joint7.dae"/></geometry>
+      <origin xyz="0.0 0 -0.012" rpy="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${mesh}/joint7.dae"/></geometry>
+      <origin xyz="0.0 0 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.03" x="0.04" y="0.04" z="0.034" xyz="0 0 0.017"/>
+  </link>
+
+  <!-- ==================== arm joints ==================== -->
+
+  <joint name="g_base_to_joint1" type="fixed">
+    <parent link="g_base"/>
+    <child link="joint1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint2_to_joint1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.9321" upper="2.9321" velocity="${arm_vel}"/>
+    <parent link="joint1"/>
+    <child link="joint2"/>
+    <origin xyz="0 0 0.13156" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint3_to_joint2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.4434" upper="2.4434" velocity="${arm_vel}"/>
+    <parent link="joint2"/>
+    <child link="joint3"/>
+    <origin xyz="0 0 0" rpy="0 1.5708 -1.5708"/>
+  </joint>
+
+  <joint name="joint4_to_joint3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.6179" upper="2.6179" velocity="${arm_vel}"/>
+    <parent link="joint3"/>
+    <child link="joint4"/>
+    <origin xyz="-0.1104 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint5_to_joint4" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.6179" upper="2.6179" velocity="${arm_vel}"/>
+    <parent link="joint4"/>
+    <child link="joint5"/>
+    <origin xyz="-0.096 0 0.06462" rpy="0 0 -1.5708"/>
+  </joint>
+
+  <joint name="joint6_to_joint5" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.7052" upper="2.7925" velocity="${arm_vel}"/>
+    <parent link="joint5"/>
+    <child link="joint6"/>
+    <origin xyz="0 -0.07318 0" rpy="1.5708 -1.5708 0"/>
+  </joint>
+
+  <joint name="joint6output_to_joint6" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-3.14159" upper="3.14159" velocity="${arm_vel}"/>
+    <parent link="joint6"/>
+    <child link="joint6_flange"/>
+    <origin xyz="0 0.0456 0" rpy="-1.5708 0 0"/>
+  </joint>
+
+  <joint name="joint6output_to_gripper_base" type="fixed">
+    <parent link="joint6_flange"/>
+    <child link="gripper_base"/>
+    <origin xyz="0 0 0.034" rpy="1.579 0 0"/>
+  </joint>
+
+  <!-- ==================== hand camera ====================
+       This is the classic file's DEFAULT mount, not its "flange" bracket option:
+       camera_mount defaults to the literal link name "joint6_flange", which is NOT
+       the string "flange", so the source file's own `cam_mount == 'flange'` check is
+       false by default and it takes the *other* branch: a plain box+cylinder bolted
+       straight onto joint6_flange at camera_xyz/camera_rpy's defaults (0 -0.038 0.04 /
+       0 -1.5708 0). No separate bracket link. This is what actually produced the
+       ICCE-Asia paper's Fig. 1 photo ("The blue box on the gripper is the camera"),
+       confirmed against 스크린샷 2026-09-01 20-42-04.png; an earlier attempt at
+       this port used the file's *other*, non-default "flange" bracket-mesh branch,
+       which sits and looks different.
+       GZ Sim rgbd_camera sensor (co-located colour+depth, one optical centre): not
+       the Gazebo-Classic libgazebo_ros_camera.so plugin. -->
+
+  <link name="hand_camera_link">
+    <visual>
+      <origin xyz="-0.012 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.030 0.034 0.028"/></geometry>
+      <material name="hand_camera_black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0.008 0 0" rpy="0 1.5708 0"/>
+      <geometry><cylinder radius="0.009" length="0.016"/></geometry>
+      <material name="hand_camera_black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <xacro:box_inertial mass="0.05" x="0.046" y="0.034" z="0.028"/>
+  </link>
+  <joint name="joint6_flange_to_hand_camera" type="fixed">
+    <parent link="joint6_flange"/>
+    <child link="hand_camera_link"/>
+    <!-- roll=0 (the classic file's own default) leaves the sensor's up-reference
+         pointing sideways in world frame at zero pose, rolling the image 90 degrees.
+         +1.5708 roll here, verified against the zero-pose FK, lines the sensor's own
+         +Z up to world +Z.
+         y is the world-down axis at the default (zero-angle) arm pose (FK-verified;
+         moving along y alone does not bring the gripper into frame, it only changes
+         camera height). y=-0.028, between the classic default (-0.038) and where the
+         camera sat noticeably too low (+0.04), is a visually confirmed value in Gazebo:
+         the target object stays cleanly framed and the gripper fingers just enter the
+         bottom corners instead of being absent or dominating the frame. -->
+    <origin xyz="0 -0.028 0.04" rpy="1.5708 -1.5708 0"/>
+  </joint>
+
+  <!-- ROS optical convention: z forward, x right, y down. GZ Sim aims a camera
+       along the sensor link's +x; only the frame stamped on the image is optical. -->
+  <link name="hand_camera_link_optical"/>
+  <joint name="hand_camera_optical_joint" type="fixed">
+    <parent link="hand_camera_link"/>
+    <child link="hand_camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+  </joint>
+
+  <gazebo reference="hand_camera_link">
+    <sensor name="hand_camera" type="rgbd_camera">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <always_on>true</always_on>
+      <update_rate>15.0</update_rate>
+      <topic>camera/hand_camera</topic>
+      <gz_frame_id>hand_camera_link_optical</gz_frame_id>
+      <camera name="hand_camera">
+        <camera_info_topic>camera/hand_camera/camera_info</camera_info_topic>
+        <horizontal_fov>1.2</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>3.0</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <!-- ==================== gripper ==================== -->
+
+  <!-- The gripper dae meshes embed a near-white diffuse color (0.98 0.98 0.98), so
+       without an override they render white/light-gray under ogre2, not the black
+       plastic of the real part. -->
+  <xacro:property name="gripper_black_rgba" value="0.05 0.05 0.05 1.0"/>
+
+  <link name="gripper_base">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_base.dae"/></geometry>
+      <origin xyz="0.0 0 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${gmesh}/gripper_base.dae"/></geometry>
+      <origin xyz="0.0 0 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.05" x="0.05" y="0.04" z="0.025" xyz="0 0.005 0"/>
+  </link>
+
+  <!-- Fingertip collision is a box, not the mesh — see the classic file for why
+       (ODE trimesh contact on thin angled plates is unpredictable). Box extents come
+       from the mesh; see mycobot_280_gazebo/gripper_gap.py. -->
+  <xacro:property name="pad_size" value="0.0131 0.0264 0.0207"/>
+
+  <link name="gripper_left1">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_left1.dae"/></geometry>
+      <origin xyz="0.039 -0.0133 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><box size="${pad_size}"/></geometry>
+      <origin xyz="0.01221 0.04004 -0.00820" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.008" x="0.024" y="0.058" z="0.021" xyz="0.0065 0.0241 -0.0082" min_i="${finger_inertia}"/>
+  </link>
+
+  <link name="gripper_left2">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_left2.dae"/></geometry>
+      <origin xyz="0.005 -0.0195 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${gmesh}/gripper_left2.dae"/></geometry>
+      <origin xyz="0.005 -0.0195 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.005" x="0.01" y="0.03" z="0.008" xyz="-0.003 0.012 0" min_i="${finger_inertia}"/>
+  </link>
+
+  <link name="gripper_left3">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_left3.dae"/></geometry>
+      <origin xyz="0.012 0.0025 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${gmesh}/gripper_left3.dae"/></geometry>
+      <origin xyz="0.012 0.0025 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.008" x="0.03" y="0.02" z="0.01" xyz="-0.013 0.008 0" min_i="${finger_inertia}"/>
+  </link>
+
+  <link name="gripper_right1">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_right1.dae"/></geometry>
+      <origin xyz="-0.039 -0.0133 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><box size="${pad_size}"/></geometry>
+      <origin xyz="-0.01342 0.04041 -0.00820" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.008" x="0.024" y="0.058" z="0.021" xyz="-0.0078 0.0245 -0.0082" min_i="${finger_inertia}"/>
+  </link>
+
+  <link name="gripper_right2">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_right2.dae"/></geometry>
+      <origin xyz="-0.005 -0.0195 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${gmesh}/gripper_right2.dae"/></geometry>
+      <origin xyz="-0.005 -0.0195 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.005" x="0.01" y="0.03" z="0.008" xyz="0.003 0.012 0" min_i="${finger_inertia}"/>
+  </link>
+
+  <link name="gripper_right3">
+    <visual>
+      <geometry><mesh filename="${gmesh}/gripper_right3.dae"/></geometry>
+      <origin xyz="-0.012 0.0025 -0.012" rpy="0 0 0"/>
+      <material name="gripper_black">
+        <color rgba="${gripper_black_rgba}"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry><mesh filename="${gmesh}/gripper_right3.dae"/></geometry>
+      <origin xyz="-0.012 0.0025 -0.012" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertial mass="0.008" x="0.03" y="0.02" z="0.01" xyz="0.013 0.008 0" min_i="${finger_inertia}"/>
+  </link>
+
+  <joint name="gripper_controller" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${grip_lo}" upper="${grip_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_left3"/>
+    <origin xyz="-0.012 0.005 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="gripper_base_to_gripper_left2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${mim_pos_lo}" upper="${mim_pos_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_left2"/>
+    <origin xyz="-0.005 0.027 0" rpy="0 0 0"/>
+    <mimic joint="gripper_controller" multiplier="1.0" offset="0"/>
+  </joint>
+
+  <joint name="gripper_left3_to_gripper_left1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${mim_neg_lo}" upper="${mim_neg_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_left3"/>
+    <child link="gripper_left1"/>
+    <origin xyz="-0.027 0.016 0" rpy="0 0 0"/>
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0"/>
+  </joint>
+
+  <joint name="gripper_base_to_gripper_right3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${mim_neg_lo}" upper="${mim_neg_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_right3"/>
+    <origin xyz="0.012 0.005 0" rpy="0 0 0"/>
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0"/>
+  </joint>
+
+  <joint name="gripper_base_to_gripper_right2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${mim_neg_lo}" upper="${mim_neg_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_base"/>
+    <child link="gripper_right2"/>
+    <origin xyz="0.005 0.027 0" rpy="0 0 0"/>
+    <mimic joint="gripper_controller" multiplier="-1.0" offset="0"/>
+  </joint>
+
+  <joint name="gripper_right3_to_gripper_right1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="$(arg grip_effort)" lower="${mim_pos_lo}" upper="${mim_pos_hi}" velocity="${grip_vel}"/>
+    <dynamics damping="$(arg grip_damping)" friction="0.0"/>
+    <parent link="gripper_right3"/>
+    <child link="gripper_right1"/>
+    <origin xyz="0.027 0.016 0" rpy="0 0 0"/>
+    <mimic joint="gripper_controller" multiplier="1.0" offset="0"/>
+  </joint>
+
+  <!-- ==================== ros2_control ==================== -->
+
+  <xacro:macro name="arm_joint" params="name initial:='0.0'">
+    <joint name="${name}">
+      <xacro:if value="${arm_control == 'velocity'}">
+        <command_interface name="velocity"/>
+      </xacro:if>
+      <xacro:unless value="${arm_control == 'velocity'}">
+        <command_interface name="position"/>
+      </xacro:unless>
+      <state_interface name="position">
+        <param name="initial_value">${initial}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+      <xacro:if value="${arm_control == 'position_pid'}">
+        <param name="pos_kp">$(arg arm_kp)</param>
+        <param name="pos_ki">$(arg arm_ki)</param>
+        <param name="pos_kd">$(arg arm_kd)</param>
+      </xacro:if>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="grip_pid_params">
+    <param name="pos_kp">$(arg grip_kp)</param>
+    <param name="pos_ki">$(arg grip_ki)</param>
+    <param name="pos_kd">$(arg grip_kd)</param>
+  </xacro:macro>
+
+  <xacro:macro name="grip_joint" params="name multiplier:='1.0'">
+    <joint name="${name}">
+      <xacro:if value="${gripper_control == 'effort'}">
+        <command_interface name="effort"/>
+      </xacro:if>
+      <xacro:unless value="${gripper_control == 'effort'}">
+        <command_interface name="position"/>
+      </xacro:unless>
+      <state_interface name="position">
+        <param name="initial_value">${grip_home * float(multiplier)}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+      <xacro:if value="${gripper_control == 'position_pid'}">
+        <xacro:grip_pid_params/>
+      </xacro:if>
+    </joint>
+  </xacro:macro>
+
+  <ros2_control name="MycobotArmSystem" type="system">
+    <hardware>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+    </hardware>
+
+    <xacro:arm_joint name="joint2_to_joint1"/>
+    <xacro:arm_joint name="joint3_to_joint2"/>
+    <xacro:arm_joint name="joint4_to_joint3"/>
+    <xacro:arm_joint name="joint5_to_joint4"/>
+    <xacro:arm_joint name="joint6_to_joint5"/>
+    <xacro:arm_joint name="joint6output_to_joint6"/>
+
+    <xacro:grip_joint name="gripper_controller"               multiplier="1.0" />
+    <xacro:grip_joint name="gripper_base_to_gripper_right3"   multiplier="-1.0"/>
+    <xacro:grip_joint name="gripper_base_to_gripper_left2"    multiplier="1.0"/>
+    <xacro:grip_joint name="gripper_left3_to_gripper_left1"   multiplier="-1.0"/>
+    <xacro:grip_joint name="gripper_base_to_gripper_right2"   multiplier="-1.0"/>
+    <xacro:grip_joint name="gripper_right3_to_gripper_right1" multiplier="1.0"/>
+  </ros2_control>
+
+  <!-- ==================== surface properties ==================== -->
+  <!-- Same tag set mechabot_gazebo.xacro uses for the wheels/casters — proven to work
+       under this GZ Sim + dartsim setup, so kept unchanged from the classic model. -->
+
+  <xacro:macro name="fingertip_surface" params="link">
+    <gazebo reference="${link}">
+      <mu1>$(arg contact_mu)</mu1>
+      <mu2>$(arg contact_mu)</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>$(arg contact_min_depth)</minDepth>
+      <maxVel>0.0</maxVel>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:fingertip_surface link="gripper_left1"/>
+  <xacro:fingertip_surface link="gripper_right1"/>
+  <xacro:fingertip_surface link="gripper_left2"/>
+  <xacro:fingertip_surface link="gripper_right2"/>
+  <xacro:fingertip_surface link="gripper_left3"/>
+  <xacro:fingertip_surface link="gripper_right3"/>
+
+</robot>

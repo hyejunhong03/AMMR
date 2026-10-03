@@ -1,0 +1,326 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+def Scope "Instances"
+{
+    def Scope "PhysicsMaterials"
+    {
+        def Material "caster_support" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 0
+            float physics:restitution = 0
+            float physics:staticFriction = 0
+        }
+    }
+
+    def Xform "mechabot_base_link" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_base_link>
+    )
+    {
+        over "mechabot_base_link" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_base_link/VisualMaterials/grey>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "grey" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/grey>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_right_wheel" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_right_wheel>
+    )
+    {
+        over "mechabot_right_wheel" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_right_wheel/VisualMaterials/blue>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "blue" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/blue>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_left_wheel" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_left_wheel>
+    )
+    {
+        over "mechabot_left_wheel" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_left_wheel/VisualMaterials/blue>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "blue" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/blue>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "front_right_castor" (
+        prepend references = @./geometries.usd@</Geometries/front_right_castor>
+    )
+    {
+        over "front_right_castor" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/front_right_castor/VisualMaterials/grey>
+        }
+
+        def Sphere "support_collision" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            double radius = 6.657482
+            rel material:binding:physics = </Instances/PhysicsMaterials/caster_support>
+            double3 xformOp:translate = (0, 0, 8.974)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "grey" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/grey>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "front_left_castor" (
+        prepend references = @./geometries.usd@</Geometries/front_left_castor>
+    )
+    {
+        over "front_left_castor" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/front_left_castor/VisualMaterials/grey>
+        }
+
+        def Sphere "support_collision" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            double radius = 6.657482
+            rel material:binding:physics = </Instances/PhysicsMaterials/caster_support>
+            double3 xformOp:translate = (0, 0, 8.974)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "grey" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/grey>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "rear_right_castor" (
+        prepend references = @./geometries.usd@</Geometries/rear_right_castor>
+    )
+    {
+        over "rear_right_castor" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/rear_right_castor/VisualMaterials/grey>
+        }
+
+        def Sphere "support_collision" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            double radius = 6.657482
+            rel material:binding:physics = </Instances/PhysicsMaterials/caster_support>
+            double3 xformOp:translate = (0, 0, 8.874)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "grey" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/grey>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "rear_left_castor" (
+        prepend references = @./geometries.usd@</Geometries/rear_left_castor>
+    )
+    {
+        over "rear_left_castor" (
+            apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/rear_left_castor/VisualMaterials/grey>
+        }
+
+        def Sphere "support_collision" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            double radius = 6.657482
+            rel material:binding:physics = </Instances/PhysicsMaterials/caster_support>
+            double3 xformOp:translate = (0, 0, 8.874)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "grey" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/grey>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_toplid" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_toplid>
+    )
+    {
+        over "mechabot_toplid" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_toplid/VisualMaterials/red>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "red" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/red>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_lidar" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_lidar>
+    )
+    {
+        over "mechabot_lidar" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_lidar/VisualMaterials/yellow>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "yellow" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/yellow>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_camera" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_camera>
+    )
+    {
+        over "mechabot_camera" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_camera/VisualMaterials/green>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "green" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/green>
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "mechabot_imu" (
+        prepend references = @./geometries.usd@</Geometries/mechabot_imu>
+    )
+    {
+        over "mechabot_imu" (
+            apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            custom rel material:binding
+            prepend rel material:binding = </Instances/mechabot_imu/VisualMaterials/blue>
+            token physics:approximation = "convexHull"
+        }
+
+        def Scope "VisualMaterials"
+        {
+            def Material "blue" (
+                instanceable = true
+                prepend references = @./materials.usda@</Materials/blue>
+            )
+            {
+            }
+        }
+    }
+}

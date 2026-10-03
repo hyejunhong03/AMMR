@@ -1,0 +1,239 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.3.2"
+    }
+    defaultPrim = "mechabot"
+    endTimeCode = 1000000
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 0
+    upAxis = "Z"
+)
+
+over "mechabot" (
+    prepend apiSchemas = ["IsaacRobotAPI"]
+)
+{
+    prepend rel isaac:physics:robotJoints = [
+        </mechabot/Physics/right_wheel_joint>,
+        </mechabot/Physics/left_wheel_joint>,
+        </mechabot/Physics/front_right_castor_joint>,
+        </mechabot/Physics/front_left_castor_joint>,
+        </mechabot/Physics/rear_right_castor_joint>,
+        </mechabot/Physics/rear_left_castor_joint>,
+        </mechabot/Physics/front_right_caster_roller_joint>,
+        </mechabot/Physics/front_left_caster_roller_joint>,
+        </mechabot/Physics/rear_right_caster_roller_joint>,
+        </mechabot/Physics/rear_left_caster_roller_joint>,
+        </mechabot/Physics/toplid_joint>,
+        </mechabot/Physics/lidar_joint>,
+        </mechabot/Physics/camera_joint>,
+        </mechabot/Physics/imu_joint>,
+    ]
+    prepend rel isaac:physics:robotLinks = [
+        </mechabot/Geometry/base_footprint/base_link>,
+        </mechabot/Geometry/base_footprint/base_link/right_wheel_link>,
+        </mechabot/Geometry/base_footprint/base_link/left_wheel_link>,
+        </mechabot/Geometry/base_footprint/base_link/front_right_castor_link>,
+        </mechabot/Geometry/base_footprint/base_link/front_left_castor_link>,
+        </mechabot/Geometry/base_footprint/base_link/rear_right_castor_link>,
+        </mechabot/Geometry/base_footprint/base_link/rear_left_castor_link>,
+        </mechabot/Geometry/base_footprint/base_link/front_right_caster_roller_link>,
+        </mechabot/Geometry/base_footprint/base_link/front_left_caster_roller_link>,
+        </mechabot/Geometry/base_footprint/base_link/rear_right_caster_roller_link>,
+        </mechabot/Geometry/base_footprint/base_link/rear_left_caster_roller_link>,
+        </mechabot/Geometry/base_footprint/base_link/toplid_link>,
+        </mechabot/Geometry/base_footprint/base_link/lidar_link>,
+        </mechabot/Geometry/base_footprint/base_link/camera_link>,
+        </mechabot/Geometry/base_footprint/base_link/imu_link>,
+    ]
+    token isaac:robotType = "Default"
+
+    over "Geometry"
+    {
+        over "base_footprint"
+        {
+            over "base_link" (
+                prepend apiSchemas = ["IsaacLinkAPI"]
+            )
+            {
+                over "right_wheel_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "left_wheel_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "front_right_castor_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "front_left_castor_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "rear_right_castor_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "rear_left_castor_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "front_right_caster_roller_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "front_left_caster_roller_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "rear_right_caster_roller_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "rear_left_caster_roller_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "toplid_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "lidar_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+
+                over "camera_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                    over "camera_link_optical" (
+                        prepend apiSchemas = ["IsaacSiteAPI"]
+                    )
+                    {
+                    }
+                }
+
+                over "imu_link" (
+                    prepend apiSchemas = ["IsaacLinkAPI"]
+                )
+                {
+                }
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        over "right_wheel_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "left_wheel_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "front_right_castor_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "front_left_castor_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "rear_right_castor_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "rear_left_castor_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "front_right_caster_roller_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "front_left_caster_roller_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "rear_right_caster_roller_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "rear_left_caster_roller_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "toplid_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "lidar_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "camera_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "imu_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+    }
+}
