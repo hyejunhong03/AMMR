@@ -19,6 +19,7 @@ Thumbs.db
 /outputs/
 /logs/
 /models/
+/trash/
 
 # Large simulator sample/world model assets not needed for the arm baseline commit
 /mechabot_description/models/
