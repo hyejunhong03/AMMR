@@ -99,6 +99,31 @@ held-out clean success >= 80%
 velocity violation rate <= 5%
 ```
 
+이 gate는 제품 수준의 최종 성능 기준이나 100% 성공 요구가 아니라, 다음
+연구 단계로 넘어가도 되는지를 판단하기 위한 engineering threshold다.
+
+`clean >= 80%`로 잡은 이유는 단일 물체 pick baseline이 60~70% 수준이면
+다음 단계에서 실패 원인이 grasp 실패인지 language grounding 실패인지
+섞이기 때문이다. 80%를 넘으면 기본 파지 파이프라인은 대체로 작동한다고
+보고, 두 물체/언어 지시 실험에서 target selection 문제를 따로 분석할 수
+있다. 반대로 90~95% 이상을 요구하면 red cube tuning에 계속 묶여 장기
+목표인 language grounding과 unseen object 실험으로 넘어가기 어렵다.
+
+`violation <= 5%`로 잡은 이유는 실제 로봇 이관을 생각하면 state jump,
+stuck, sim_state_spike가 자주 나오는 정책은 raw success가 높아도 위험하기
+때문이다. 5% 이하는 위험한 contact/state jump가 예외적으로 발생하는 수준,
+10~15% 이상은 아직 안정화가 덜 된 수준으로 본다.
+
+따라서 이 gate의 의미는 아래와 같다.
+
+```text
+clean >= 80%:
+  grasp baseline으로 쓸 만큼 충분히 성공한다
+
+violation <= 5%:
+  위험한 contact/state jump가 드물다
+```
+
 ## 기존 Local Red Cube Baseline
 
 table 영역을 recenter하기 전의 local workspace에서 아래 checkpoint를
@@ -297,8 +322,11 @@ failure classes:      approach_miss 8, success_with_state_jump 1
 
 - recentered safe workspace에서 gate를 통과했다.
 - 대표 보고 숫자는 raw 52/60이 아니라 clean 51/60이다.
-- 100%가 아니어도 baseline으로는 충분하다. 이후 실험에서는 이 baseline을
-  regression test로 사용하면 된다.
+- 100%가 아니어도 다음 단계로 넘어갈 baseline으로는 충분하다. 이후
+  실험에서는 이 baseline을 regression test로 사용하면 된다.
+- 보고할 때는 "완성된 제품 수준"이 아니라 "정의된 recentered safe
+  workspace에서 clean success 기준 gate를 통과한 단일 red cube pick
+  baseline"이라고 표현한다.
 
 동결할 현재 red cube checkpoint:
 

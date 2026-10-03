@@ -509,6 +509,30 @@ velocity/spike rate <= 5%
 failure table에서 approach miss와 state jump를 분리해서 기록
 ```
 
+이 gate는 제품 수준의 최종 성능 기준이나 100% 성공 요구가 아니다. 다음
+연구 단계로 넘어가도 되는지를 판단하기 위한 engineering threshold다.
+
+`clean >= 80%`는 단일 물체 pick 파이프라인이 대체로 작동한다는 최소선이다.
+60~70% 수준에서는 이후 two-object 실험에서 실패 원인이 grasp 실패인지
+language grounding 실패인지 분리하기 어렵다. 반대로 90~95% 이상을 요구하면
+red cube tuning에 지나치게 묶여 장기 목표인 language grounding과 unseen
+object 실험으로 넘어가기 어렵다.
+
+`velocity/spike <= 5%`는 실제 로봇 이관 관점의 안정성 최소선이다. raw
+success가 높아도 state jump, stuck, sim_state_spike가 자주 발생하면 안정적
+성공으로 보면 안 된다. 5% 이하는 위험한 contact/state jump가 예외적으로
+발생하는 수준으로 보고, 10~15% 이상이면 아직 안정화가 부족한 상태로 본다.
+
+즉 이 gate의 의미는 다음과 같다.
+
+```text
+clean >= 80%:
+  grasp baseline으로 쓸 만큼 충분히 성공한다
+
+velocity/spike <= 5%:
+  위험한 contact/state jump가 드물다
+```
+
 이 gate를 통과하면 다음 과학적 단계는 two-object language grounding이다.
 
 ```text
